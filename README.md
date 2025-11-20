@@ -15,39 +15,6 @@ This project implements an end-to-end data engineering pipeline:
 My own recipe — Idli Sambar — is added as the primary dataset.  
 Synthetic recipes, User profiles, and 400+ interactions support analysis and modeling.
 
-
-#  Project Structure
-
-├── firestore_setup.py
-├── etl_export_transform.py
-├── analytics.py
-├── validator.py
-├── utils.py
-├── README.md
-│
-├── outputs/
-│   ├── recipe.csv
-│   ├── ingredients.csv
-│   ├── steps.csv
-│   ├── interactions.csv
-│   ├── validation_report.json
-│   └── raw_export.json
-│
-└── analytics/
-    ├── analytics_report.json
-    ├── difficulty_distribution.png
-    ├── common_ingredients.png
-    ├── high_engagement_ingredients.png
-    ├── top_views.png
-    ├── prep_vs_likes.png
-    ├── interaction_summary.csv
-    ├── popularity_index.csv
-    ├── user_engagement.csv
-    ├── top_views.csv
-    ├── top_likes.csv
-    ├── top_ratings.csv
-    ├── top_ratings.csv
-
 # Data Model
 
 The data model includes three core Firestore collections:
