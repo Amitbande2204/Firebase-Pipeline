@@ -8,13 +8,13 @@ This project implements a complete end‑to‑end analytics pipeline using Fires
 The pipeline seeds Firestore with your recipe (Idli Sambar) along with realistic synthetic data, performs ETL to CSV, validates the exported data, and generates analytics with visual insights.
 
 # Project Structure:
-firestore_setup.py       -> Seeds Firestore with recipes, users, interactions + bad data.
-etl_export_transform.py  -> Extracts from Firestore, normalizes, exports CSVs.
-validation.py            -> Validates exported CSVs, produces clean & quarantine outputs.
-analytics.py             -> Generates insights, charts, analytics_report.json.
-run_pipeline.py          -> Orchestrates all steps end‑to‑end.
-utils.py                 -> Helpers, logging, folder configuration.
-requirements.txt         -> Dependencies.
+-firestore_setup.py       -> Seeds Firestore with recipes, users, interactions + bad data.  
+-etl_export_transform.py  -> Extracts from Firestore, normalizes, exports CSVs.  
+-validation.py            -> Validates exported CSVs, produces clean & quarantine outputs.  
+-analytics.py             -> Generates insights, charts, analytics_report.json.  
+-run_pipeline.py          -> Orchestrates all steps end‑to‑end.  
+-utils.py                 -> Helpers, logging, folder configuration.  
+-requirements.txt         -> Dependencies.  
 
 # Data Modeling: 
 A well-structured data model is the backbone of this pipeline.  
@@ -106,34 +106,12 @@ This table forms the Fact Table of the pipeline.
 Every insight such as top views, engagement scoring, funnel conversion, and location-based usage comes from this model.
 
 # ERD Representation: 
-      ┌──────────────────┐
-      │     USERS        │
-      │ user_id (PK)     │
-      └────────┬─────────┘
-               │
-               │ 1..N
-               │
-    ┌──────────▼───────────┐
-    │    INTERACTIONS      │
-    │ interaction_id (PK)  │
-    │ user_id (FK)         │
-    │ recipe_id (FK)       │
-    └──────────┬───────────┘
-               │
-               │ N..1
-               │
-   ┌───────────▼───────────┐
-   │       RECIPES         │
-   │ recipe_id (PK)        │
-   └───────┬───────────────┘
-           │
- ┌─────────┴───────────┐
- │                     │
- ▼                     ▼
+  <img width="1536" height="1024" alt="ChatGPT Image Nov 21, 2025, 09_44_01 AM-1" src="https://github.com/user-attachments/assets/b7131581-4575-409c-83e2-0e6a07d987c4" />
+
 
 # Firebase Source Data Setup:
 # Firestore Seeding (firestore_setup.py)
-# Implements:
+ Implements:
 - Your recipe **Idli Sambar** as the primary recipe  
 - Adds **18 synthetic realistic recipes**
 - Adds **30 users** with city/state data  
