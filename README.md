@@ -8,13 +8,13 @@ This project implements a complete end‑to‑end analytics pipeline using Fires
 The pipeline seeds Firestore with your recipe (Idli Sambar) along with realistic synthetic data, performs ETL to CSV, validates the exported data, and generates analytics with visual insights.
 
 # Project Structure:
-firestore_setup.py       -> Seeds Firestore with recipes, users, interactions + bad data
-etl_export_transform.py  -> Extracts from Firestore, normalizes, exports CSVs
-validation.py            -> Validates exported CSVs, produces clean & quarantine outputs
-analytics.py             -> Generates insights, charts, analytics_report.json
-run_pipeline.py          -> Orchestrates all steps end‑to‑end
-utils.py                 -> Helpers, logging, folder configuration
-requirements.txt         -> Dependencies
+firestore_setup.py       -> Seeds Firestore with recipes, users, interactions + bad data.
+etl_export_transform.py  -> Extracts from Firestore, normalizes, exports CSVs.
+validation.py            -> Validates exported CSVs, produces clean & quarantine outputs.
+analytics.py             -> Generates insights, charts, analytics_report.json.
+run_pipeline.py          -> Orchestrates all steps end‑to‑end.
+utils.py                 -> Helpers, logging, folder configuration.
+requirements.txt         -> Dependencies.
 
 # Data Modeling: 
 A well-structured data model is the backbone of this pipeline.  
@@ -36,6 +36,7 @@ Represents a complete cooking item with all metadata, ingredients, steps, and pr
 | cuisines          | ARRAY<STRING>             | Cuisine classification                          |
 | ingredients       | ARRAY<OBJECT>             | Embedded ingredient objects                     |
 | steps             | ARRAY<OBJECT>             | Embedded cooking steps                          | 
+
 The recipe document acts as the primary fact  ource for all derived tables.
 
 # Ingredients Data Model
@@ -48,6 +49,7 @@ Each ingredient is extracted into a normalized table during ETL.
 | name          | STRING      | Ingredient name              |
 | quantity      | FLOAT       | Quantity used                |
 | unit          | STRING      | Measurement unit             |
+
 **Why normalized?**
 - Enables ingredient-level analytics  
 - Supports insights such as:  
@@ -64,6 +66,7 @@ Captures full cooking flow for each recipe.
 | step_no          | INT         | Sequential step number |
 | instruction      | STRING      | Text instruction       |
 | duration_minutes | INT         | Estimated time         |
+
 Use Cases:
 - Calculate total steps per recipe  
 - Analyze complexity (Insight #13)  
@@ -80,6 +83,7 @@ Represents application users performing actions on recipes.
 | state   | STRING      | State for demographic insights       |
 | country | STRING      | Country                              |
 | email   | STRING      | Contact email                        |
+
 Use Cases:
 - User segmentation  
 - Geography heatmaps  
@@ -149,6 +153,7 @@ The ETL pipeline consists of **three phases**:
 1. **Extract** – Stream structured data from Firestore  
 2. **Transform** – Normalize nested NoSQL documents into relational tables  
 3. **Load** – Persist the normalized datasets as CSVs inside `ETL_Output/`
+
 A controlled and logged workflow ensures that every run produces consistent results.
 
 # Extraction (E)
@@ -186,6 +191,7 @@ Each ingredient from every recipe is extracted with:
 - Foreign key `recipe_id`  
 - Quantity + unit  
 - Cleaned ingredient name  
+
 This enables ingredient-level analytics.
 
 # C. Steps → steps.csv
@@ -194,6 +200,7 @@ Each step is extracted into:
 - step_no  
 - instruction  
 - duration_minutes  
+
 Useful for measuring recipe complexity and step count analytics.
 
 # D. Interactions → interactions.csv
@@ -205,6 +212,7 @@ The user event log is normalized with:
 - optional rating  
 - optional like boolean  
 - timestamp  
+
 This table powers engagement scoring, funnels, and correlation analytics.
 
 # E. Users → users.csv
@@ -213,6 +221,7 @@ All user metadata is exported into:
 - name  
 - city/state/country  
 - email  
+
 Supports segmentation and geo-based analytics.
 
 # Loading (L)
@@ -281,6 +290,7 @@ The analytics module processes all validated (clean) data to generate 15 busines
 - Steps by Difficulty – Harder recipes mapped to higher step counts.
 - Engagement by Cuisine – Cuisines generating strongest non-view engagement.
 - User State Distribution – Top states contributing to platform activity.
+
 Outputs:
 All results are exported as JSON summaries, CSV tables, and visual charts in Analytics_Output/.
 
