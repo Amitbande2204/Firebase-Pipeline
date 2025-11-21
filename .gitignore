@@ -1,0 +1,29 @@
+# ----------------------------
+# Python cache
+# ----------------------------
+__pycache__/
+*.pyc
+
+# ----------------------------
+# VS Code settings
+# ----------------------------
+.vscode/
+
+# ----------------------------
+# IMPORTANT SECURITY FILES
+# Never push Firebase private key or env variables
+# ----------------------------
+serviceAccountKey.json
+*.env
+
+# ----------------------------
+# System files
+# ----------------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------------
+# Temporary / backup files
+# ----------------------------
+*.tmp
+*.log

@@ -1,0 +1,3 @@
+interaction_id,user_id,recipe_id,type,rating,like,timestamp
+bad_int_rating_high,pooja_joshi,chicken_tikka,rating,10.0,False,2025-11-20 12:54:30.094049+00:00
+bad_int_wrong_type,tanvi_verma,idli_sambar,shared_on_facebook,,False,2025-11-20 12:54:30.122005+00:00

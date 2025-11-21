@@ -1,0 +1,5 @@
+pandas
+matplotlib
+firebase-admin
+faker
+python-dotenv

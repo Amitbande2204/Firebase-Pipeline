@@ -1,0 +1,20 @@
+recipe_id,name,description,prep_time_minutes,cook_time_minutes,difficulty,servings,tags,cuisines,popularity_score
+aloo_gobi,Aloo Gobi,Authentic Aloo Gobi recipe.,15,25,Medium,2,Lunch|Dry Curry,Global,76
+chana_masala,Chana Masala,Authentic Chana Masala recipe.,480,40,Medium,2,Vegan|North Indian,Indian,71
+chicken_tikka,Chicken Tikka,Authentic Chicken Tikka recipe.,60,25,Medium,2,Appetizer|Non-Veg,Global,81
+egg_bhurji,Egg Bhurji,Authentic Egg Bhurji recipe.,5,10,Easy,2,Breakfast|Protein,Global,49
+fish_curry,Fish Curry,Authentic Fish Curry recipe.,20,30,Hard,2,Seafood|Dinner,Global,70
+idli_sambar,Idli Sambar,Steamed idlis served with flavorful lentil sambar.,20,30,Medium,4,breakfast|vegetarian|steamed,South Indian,70
+lemon_rice,Lemon Rice,Authentic Lemon Rice recipe.,10,10,Easy,2,South Indian|Lunch,Global,43
+masoor_dal_tadka,Masoor Dal Tadka,Authentic Masoor Dal Tadka recipe.,5,20,Easy,2,Comfort|Indian,Global,58
+mushroom_masala,Mushroom Masala,Authentic Mushroom Masala recipe.,15,25,Medium,2,Dinner|Vegetarian,Indian,70
+palak_paneer,Palak Paneer,Authentic Palak Paneer recipe.,20,25,Medium,2,Healthy|Dinner,Global,48
+paneer_butter_masala,Paneer Butter Masala,Authentic Paneer Butter Masala recipe.,20,30,Medium,2,Dinner|North Indian,Indian,45
+poha,Poha,Authentic Poha recipe.,10,10,Easy,2,Breakfast|Maharashtrian,Global,87
+rajma_chawal,Rajma Chawal,Authentic Rajma Chawal recipe.,480,40,Medium,2,Comfort|Lunch,Global,39
+rava_upma,Rava Upma,Authentic Rava Upma recipe.,5,15,Easy,2,Breakfast|South Indian,Global,37
+spaghetti_aglio_e_olio,Spaghetti Aglio e Olio,Authentic Spaghetti Aglio e Olio recipe.,5,15,Easy,2,Italian|Dinner,Global,48
+tomato_soup,Tomato Soup,Authentic Tomato Soup recipe.,10,20,Easy,2,Soup|Healthy,Global,61
+veg_fried_rice,Veg Fried Rice,Authentic Veg Fried Rice recipe.,15,10,Easy,2,Chinese|Lunch,Global,45
+vegetable_biryani,Vegetable Biryani,Authentic Vegetable Biryani recipe.,40,45,Hard,2,Main Course|Rice,Indian,79
+vegetable_pulao,Vegetable Pulao,Authentic Vegetable Pulao recipe.,15,20,Easy,2,One Pot|Rice,Global,52
