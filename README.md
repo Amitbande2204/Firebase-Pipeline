@@ -106,12 +106,12 @@ This table forms the Fact Table of the pipeline.
 Every insight such as top views, engagement scoring, funnel conversion, and location-based usage comes from this model.
 
 # ERD Representation: 
-  <img width="1536" height="1024" alt="ChatGPT Image Nov 21, 2025, 09_44_01 AM-1" src="https://github.com/user-attachments/assets/b7131581-4575-409c-83e2-0e6a07d987c4" />
-
+A visual ERD diagram:
+  <img width="800" height="533" alt="ChatGPT Image Nov 21, 2025, 09_44_01 AM-1" src="https://github.com/user-attachments/assets/b7131581-4575-409c-83e2-0e6a07d987c4" />
 
 # Firebase Source Data Setup:
 # Firestore Seeding (firestore_setup.py)
- Implements:
+Implements:
 - Your recipe **Idli Sambar** as the primary recipe  
 - Adds **18 synthetic realistic recipes**
 - Adds **30 users** with city/state data  
