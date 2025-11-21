@@ -1,27 +1,29 @@
 # Firebase-Pipeline
 
-#  Data Engineering Assesment (Firebase-Based Recipe Analytics Pipeline)  
+##  Data Engineering Assesment (Firebase-Based Recipe Analytics Pipeline):  
 A complete end-to-end **Data Engineering workflow** using **Firestore**, **Python**, **ETL**, **Analytics**, and **Visualization**.
 
-# Overview:
+## Overview:
 This project implements a complete end‑to‑end analytics pipeline using Firestore as the source system.  
 The pipeline seeds Firestore with your recipe (Idli Sambar) along with realistic synthetic data, performs ETL to CSV, validates the exported data, and generates analytics with visual insights.
 
-# Project Structure:
--firestore_setup.py       -> Seeds Firestore with recipes, users, interactions + bad data.  
--etl_export_transform.py  -> Extracts from Firestore, normalizes, exports CSVs.  
--validation.py            -> Validates exported CSVs, produces clean & quarantine outputs.  
--analytics.py             -> Generates insights, charts, analytics_report.json.  
--run_pipeline.py          -> Orchestrates all steps end‑to‑end.  
--utils.py                 -> Helpers, logging, folder configuration.  
--requirements.txt         -> Dependencies.  
+## Project Structure:
+```
+firestore_setup.py       -> Seeds Firestore with recipes, users, interactions + bad data.  
+etl_export_transform.py  -> Extracts from Firestore, normalizes, exports CSVs.  
+validation.py            -> Validates exported CSVs, produces clean & quarantine outputs.  
+analytics.py             -> Generates insights, charts, analytics_report.json.  
+run_pipeline.py          -> Orchestrates all steps end‑to‑end.  
+utils.py                 -> Helpers, logging, folder configuration.  
+requirements.txt         -> Dependencies.  
+```
 
-# Data Modeling: 
+## Data Modeling: 
 A well-structured data model is the backbone of this pipeline.  
 The model follows **Star Schema principles**, **normalization rules**, and **event-driven design**, ensuring scalability, analytical usability, and consistency.
 
-# Recipes Data Model
-# Entity: Recipe
+### Recipes Data Model:
+#### Entity: Recipe
 Represents a complete cooking item with all metadata, ingredients, steps, and properties.
 | Field             | Type                      | Description                                     |
 |-------------------|---------------------------|-------------------------------------------------|
@@ -39,9 +41,9 @@ Represents a complete cooking item with all metadata, ingredients, steps, and pr
 
 The recipe document acts as the primary fact  ource for all derived tables.
 
-# Ingredients Data Model
+### Ingredients Data Model:
 Each ingredient is extracted into a normalized table during ETL.
-# Entity: Ingredient
+#### Entity: Ingredient
 | Field         | Type        | Description                  |
 |---------------|-------------|------------------------------|
 | ingredient_id | STRING (PK) | Unique per ingredient object |
@@ -57,9 +59,9 @@ Each ingredient is extracted into a normalized table during ETL.
   → ingredient engagement,  
   → ingredient cost analysis (future extension)
 
-# Steps Data Model
+### Steps Data Model:
 Captures full cooking flow for each recipe.
-# Entity: Step
+#### Entity: Step
 | Field            | Type        | Description            |
 |------------------|-------------|------------------------|
 | recipe_id        | STRING (FK) | Links to parent recipe |
@@ -67,14 +69,14 @@ Captures full cooking flow for each recipe.
 | instruction      | STRING      | Text instruction       |
 | duration_minutes | INT         | Estimated time         |
 
-Use Cases:
+**Use Cases:**
 - Calculate total steps per recipe  
 - Analyze complexity (Insight #13)  
 - Assess time distribution across cooking instructions
 
-# Users Data Model
+### Users Data Model:
 Represents application users performing actions on recipes.
-# Entity: User
+#### Entity: User
 | Field   | Type        | Description                          |
 |---------|-------------|--------------------------------------|
 | user_id | STRING (PK) | Unique ID created via normalize_id() |
@@ -84,14 +86,14 @@ Represents application users performing actions on recipes.
 | country | STRING      | Country                              |
 | email   | STRING      | Contact email                        |
 
-Use Cases:
+**Use Cases:**
 - User segmentation  
 - Geography heatmaps  
 - Personalized recommendation modeling  
 
-# Interactions Data Model
+### Interactions Data Model:
 The event log capturing every action performed by a user.
-# Entity: Interaction
+#### Entity: Interaction
 | Field          | Type               | Description                              |
 |----------------|--------------------|------------------------------------------|
 | interaction_id | STRING (PK)        | Unique ID for interaction                |
@@ -105,13 +107,14 @@ The event log capturing every action performed by a user.
 This table forms the Fact Table of the pipeline.
 Every insight such as top views, engagement scoring, funnel conversion, and location-based usage comes from this model.
 
-# ERD Representation: 
+## ERD Representation: 
 A visual ERD diagram:
+
   <img width="800" height="533" alt="ChatGPT Image Nov 21, 2025, 09_44_01 AM-1" src="https://github.com/user-attachments/assets/b7131581-4575-409c-83e2-0e6a07d987c4" />
 
-# Firebase Source Data Setup:
-# Firestore Seeding (firestore_setup.py)
-Implements:
+## Firebase Source Data Setup:
+### Firestore Seeding (firestore_setup.py):
+**Implements:**
 - Your recipe **Idli Sambar** as the primary recipe  
 - Adds **18 synthetic realistic recipes**
 - Adds **30 users** with city/state data  
@@ -123,10 +126,10 @@ Implements:
   - Rating > 5  
   - Invalid interaction type  
 
-# ETL/ELT Pipeline:(etl_export_transform.py)  
+## ETL/ELT Pipeline: 
 It is designed to be **deterministic**, **idempotent**, **scalable**, and **audit-friendly**, ensuring that the exported data is reliable for downstream validation and analytics.
 
-# ETL Architecture Overview
+### ETL Architecture Overview
 The ETL pipeline consists of **three phases**:
 1. **Extract** – Stream structured data from Firestore  
 2. **Transform** – Normalize nested NoSQL documents into relational tables  
@@ -134,36 +137,36 @@ The ETL pipeline consists of **three phases**:
 
 A controlled and logged workflow ensures that every run produces consistent results.
 
-# Extraction (E)
+### Extraction (E):
 Extraction is performed using the Firebase Admin SDK.  
 Instead of loading entire collections at once, Firestore data is **streamed**, ensuring:
 
-# Extracted Firestore Collections:
+#### Extracted Firestore Collections:
 - recipes
 - users
 - interactions
 
-# Code Behavior
+### Code Behavior:
 - The ETL script first checks if a Firebase app is already initialized to avoid duplicate initialization errors.
 - Each collection is streamed using `collection().stream()`.
 - Each Firestore document is converted into a Python `dict` using `to_dict()`.
 
 This ensures the raw input is consistent and safely handled before transformations.
 
-# Transformation (T)
+### Transformation (T):
 The transformation step is the heart of the pipeline.
 
 Since Firestore is a **NoSQL document store**, the recipe data is nested and unstructured.  
 The ETL process converts it into **fully normalized relational tables** following 1NF, 2NF, and 3NF principles.
 
-# Transformations performed:
-# A. Recipes → recipe.csv
+#### Transformations performed:
+##### A. Recipes → recipe.csv
 Flatten nested recipe attributes:
 - Basic recipe metadata
 - Tags flattened into `|` separated strings
 - Cuisine array converted to string format
 
-# B. Ingredients → ingredients.csv
+##### B. Ingredients → ingredients.csv
 Each ingredient from every recipe is extracted with:
 - Unique `ingredient_id`  
 - Foreign key `recipe_id`  
@@ -172,7 +175,7 @@ Each ingredient from every recipe is extracted with:
 
 This enables ingredient-level analytics.
 
-# C. Steps → steps.csv
+##### C. Steps → steps.csv
 Each step is extracted into:
 - recipe_id  
 - step_no  
@@ -181,7 +184,7 @@ Each step is extracted into:
 
 Useful for measuring recipe complexity and step count analytics.
 
-# D. Interactions → interactions.csv
+##### D. Interactions → interactions.csv
 The user event log is normalized with:
 - interaction_id  
 - recipe_id  
@@ -193,7 +196,7 @@ The user event log is normalized with:
 
 This table powers engagement scoring, funnels, and correlation analytics.
 
-# E. Users → users.csv
+##### E. Users → users.csv
 All user metadata is exported into:
 - user_id  
 - name  
@@ -202,40 +205,15 @@ All user metadata is exported into:
 
 Supports segmentation and geo-based analytics.
 
-# Loading (L)
+### Loading (L):
 Once transformed, the data is persisted into the structured directory:
 
-# ETL Process Diagram (Textual)
+### Pipeline Workflow:
 
-     Firestore
-┌───────────────────────┐
-│  recipes              │
-│  users                │
-│  interactions         │
-└───────────┬───────────┘
-            │ Extract (Stream)
-            ▼
-    Raw Python Dicts
-┌───────────────────────┐
-│ Flatten / Normalize   │
-│ Split nested arrays   │
-│ Validate types        │
-└───────────┬───────────┘
-            │ Transform
-            ▼
- Normalized DataFrames
-┌───────────────────────┐
-│ recipe.csv            │
-│ ingredients.csv       │
-│ steps.csv             │
-│ interactions.csv      │
-│ users.csv             │
-└───────────┬───────────┘
-            │ Load
-            ▼
-   ETL_Output/ (Final)
+  <img width="1536" height="1024" alt="ChatGPT Image Nov 21, 2025, 11_10_11 AM" src="https://github.com/user-attachments/assets/b400710b-d8fe-4479-809b-34afe2701ec7" />
 
-#  Data Quality Validation: (validation.py)
+
+##  Data Quality Validation: 
 The validation layer acts as the quality checkpoint of the pipeline. After ETL, every dataset is validated against multiple rules—required fields, numeric correctness, domain constraints, structural checks, data types, and referential integrity. Records that pass all rules are stored in clean_*.csv, while records failing any rule (e.g., negative prep time, invalid difficulty, missing recipe names, out-of-range ratings, invalid interaction types, empty ingredients/steps, broken user/recipe links) are isolated into quarantine_*.csv along with the failure reason.
 
 This approach ensures:
@@ -249,10 +227,10 @@ Outputs:
 - **quarantine_*.csv** → invalid records with reasons  
 - **validation_report.json**
 
-#  Analytics Requirements:(analytics.py)
+##  Analytics Requirements:
 The analytics module processes all validated (clean) data to generate 15 business and behavioral insights, supported by visual charts. These insights cover ingredient usage, recipe complexity, user behavior, and engagement patterns across the dataset.
 
-# Key insights include:
+### Key insights include:
 - Top Ingredients – Identifies the most frequently used ingredients across all recipes.
 - Preparation Time Trends – Average prep time and time distribution across dishes.
 - Difficulty Distribution – Share of Easy, Medium, and Hard recipes.
@@ -269,25 +247,25 @@ The analytics module processes all validated (clean) data to generate 15 busines
 - Engagement by Cuisine – Cuisines generating strongest non-view engagement.
 - User State Distribution – Top states contributing to platform activity.
 
-Outputs:
+**Outputs:**
 All results are exported as JSON summaries, CSV tables, and visual charts in Analytics_Output/.
 
 
-# Pipeline Orchestration (run_pipeline.py)
+## Pipeline Orchestration:
 The entire workflow is orchestrated through run_pipeline.py, which coordinates all stages—Firestore setup, ETL, validation, and analytics—into a single automated execution. The orchestration uses centralized logging from utils.py, ensuring consistent timestamps, event tracking, and operational transparency across all modules.
 
-# How the Orchestration Works:
+### How the Orchestration Works:
 The run_pipeline.py script runs the pipeline in four sequential steps, each logged clearly:
-# 1.Firestore Seeding
+#### 1. Firestore Seeding
 Populates Firestore with the primary (Idli Sambar) recipe, synthetic recipes, users, interactions, and intentionally injected bad data.
-# 2.ETL (Extract & Transform)
+#### 2. ETL (Extract & Transform)
 Extracts Firestore collections, normalizes nested documents into relational tables, and writes structured CSVs into ETL_Output/.
-# 3.Data Validation
+#### 3. Data Validation
 Applies all quality rules, separates valid and invalid records into clean and quarantine folders, and produces a validation report.
-# 4.Analytics Generation
+#### 4. Analytics Generation
 Processes clean data to compute 15 insights, generate charts, and produce the final analytics report and summary tables.
 
-# Role of utils.py
+### Role of utils.py:
 utils.py provides foundational utilities for the pipeline:
 - Standardized logging for every module
 - Dynamic directory creation for ETL, validation, and analytics folders
@@ -301,28 +279,28 @@ utils.py provides foundational utilities for the pipeline:
 - Modular structure simplifies maintenance and scaling
 - Ideal for scheduling (Cron, Cloud Run, Airflow) in future expansions 
 
-# How to Run the Complete Pipeline:
+### How to Run the Complete Pipeline:
 Follow the steps below to execute the entire workflow—from Firestore seeding to analytics generation.
-# 1. Install dependencies
+#### 1. Install dependencies:
 Install all required libraries listed in requirements.txt:
 ```
 pip install -r requirements.txt
 ```
 
-# 2. Configuration
+#### 2. Configuration:
 Firebase configuration is already embedded inside utils.py:
 ```
 PROJECT_ID = "assesment-amitkumarbande"
 SERVICE_ACCOUNT_PATH = "D:\\Assignment_DataEngineer\\serviceAccountKey.json"
 ```
-# 3. Run full pipeline:
+#### 3. Run full pipeline:
 Execute the orchestrator script:
 ```
 python run_pipeline.py
 ```
 This will automatically run all four stages in sequence:
 
-# Step 1: Firestore Setup
+#### Step 1: Firestore Setup
 Seeds Firestore with:
 - Your primary recipe (Idli Sambar)
 - 18 realistic synthetic recipes
@@ -330,7 +308,7 @@ Seeds Firestore with:
 - 400 interactions
 - Injected bad data for validation testing
 
-# Step 2: ETL (Extract + Transform)
+#### Step 2: ETL (Extract + Transform)
 Extracts Firestore collections and generates:
 - recipe.csv
 - ingredients.csv
@@ -338,34 +316,34 @@ Extracts Firestore collections and generates:
 - users.csv
 - interactions.csv
 
-Stored under:  ETL_Output/
+Outputs stored in:  **ETL_Output/**
 
-# Step 3: Data Validation
+#### Step 3: Data Validation
 Validates all CSVs and splits them into:
   Validation_Output/
    clean_*.csv
    quarantine_*.csv
    validation_report.json
 
-# Step 4: Analytics & Visualizations
+#### Step 4: Analytics & Visualizations
 Generates:
 - analytics_report.json
 - top_views.csv, user_engagement.csv, etc.
 - 15 insight charts
 
 Outputs stored in:
-  Analytics_Output/
-  Analytics_Output/Charts/
+ **Analytics_Output/**
+ **Analytics_Output/Charts/**
 
-# Verify Output Folders
+#### Verify Output Folders:
 After the pipeline completes successfully, you will see:
-  ETL_Output/
-  Validation_Output/
-  Analytics_Output/
-  Analytics_Output/Charts/
+  **ETL_Output/**
+  **Validation_Output/**
+  **Analytics_Output/**
+  **Analytics_Output/Charts/**
 Each folder contains structured, validated, and analytics-ready data.
 
-# Known Limitations
+## Known Limitations:
 - The pipeline performs a full refresh on every run; incremental loads are not implemented.
 - Synthetic data and random interactions may not fully reflect real-world behavioral patterns.
 - Firestore batch writes are limited to fixed-size batches (e.g., 400 records).
