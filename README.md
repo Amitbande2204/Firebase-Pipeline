@@ -337,10 +337,12 @@ Outputs stored in:
 
 #### Verify Output Folders:
 After the pipeline completes successfully, you will see:
-  **ETL_Output/**
-  **Validation_Output/**
-  **Analytics_Output/**
-  **Analytics_Output/Charts/**
+```
+  ETL_Output/
+  Validation_Output/
+  Analytics_Output/
+  Analytics_Output/Charts/
+```
 Each folder contains structured, validated, and analytics-ready data.
 
 ## Known Limitations:
