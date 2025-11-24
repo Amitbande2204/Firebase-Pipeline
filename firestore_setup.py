@@ -30,8 +30,7 @@ NUM_USERS = 30
 NUM_INTERACTIONS = 400
 
 
-# User Locations
-
+# users 
 LOCATIONS = {
     "Maharashtra": ["Pune", "Mumbai", "Nagpur", "Nashik", "Thane"],
     "Karnataka": ["Bengaluru", "Mysuru", "Mangaluru", "Hubli"],
@@ -57,9 +56,7 @@ def now_utc():
     return datetime.datetime.utcnow()
 
 
-# --------------------------------------------------------
-# PRIMARY RECIPE — IDLI SAMBAR (Final Optimized Version)
-# --------------------------------------------------------
+# primary recipe — idli sambar
 IDLI_SAMBAR = {
     "recipe_id": normalize_id("Idli Sambar"),
     "name": "Idli Sambar",
@@ -135,9 +132,8 @@ IDLI_SAMBAR = {
     ],
 }
 
-# --------------------------------------------------------
-# SYNTHETIC RECIPES (Full List)
-# --------------------------------------------------------
+
+# synthetic recipes
 REALISTIC_RECIPES = [
     {
         "name": "Veg Fried Rice",
@@ -430,9 +426,7 @@ def inject_bad_data(db, user_ids, recipe_ids):
     db.collection("interactions").document(bad_inter["interaction_id"]).set(bad_inter)
 
 
-# --------------------------------------------------------
-# MAIN SEEDING PROCESS
-# --------------------------------------------------------
+# main function
 def main():
     try:
         if not firebase_admin._apps:
@@ -442,14 +436,14 @@ def main():
         db = firestore.client()
         ts = now_utc()
 
-        # ---------------- Primary Recipe ----------------
+        # primary recipe 
         logger.info("Adding Primary Recipe: Idli Sambar")
         recipe_doc = IDLI_SAMBAR.copy()
         recipe_doc["created_at"] = ts
         recipe_doc["updated_at"] = ts
         db.collection("recipes").document(recipe_doc["recipe_id"]).set(recipe_doc)
 
-        # ---------------- Synthetic Recipes -------------
+        # synthetic Recipes 
         logger.info("Adding Synthetic Recipes...")
         synthetic_ids = []
 
@@ -492,7 +486,7 @@ def main():
                 "updated_at": ts
             })
 
-        # ---------------- Users -------------------------
+        # users 
         logger.info("Adding Users...")
         user_ids = []
 
@@ -514,7 +508,7 @@ def main():
                 "updated_at": ts
             })
 
-        # ---------------- Interactions -------------------
+        # interactions 
         logger.info("Adding Interactions...")
         all_recipes = synthetic_ids + [recipe_doc["recipe_id"]]
 
@@ -552,7 +546,7 @@ def main():
         if bcount > 0:
             batch.commit()
 
-        # ---------------- Bad Data -----------------------
+        # bad data injection
         inject_bad_data(db, user_ids, all_recipes)
 
         logger.info("Firestore setup complete!")

@@ -45,9 +45,7 @@ logger = get_logger("ETL_Pipeline")
 CHECKPOINT_FILE = os.path.join(OUTPUT_DIR, "etl_checkpoint.txt")
 
 
-# -------------------------------------------------------------------
-#  Helpers: checkpoint, firestore init, version discovery
-# -------------------------------------------------------------------
+#  helpers- checkpoint, firestore init, version discovery
 def get_last_run_timestamp():
     """Reads last ETL run timestamp (UTC) from checkpoint file, if present."""
     if not os.path.exists(CHECKPOINT_FILE):
@@ -165,9 +163,7 @@ def backup_previous_version(prev_path: str | None):
         logger.warning(f"Failed to backup previous version {name}: {e}")
 
 
-# -------------------------------------------------------------------
 #  Firestore fetch (full or incremental)
-# -------------------------------------------------------------------
 def fetch_firestore_data(last_run_ts=None):
     """
     Extracts raw collections from Firestore.
@@ -235,9 +231,8 @@ def merge_with_existing(df_new: pd.DataFrame,
     return df_new
 
 
-# -------------------------------------------------------------------
-#  Normalization & saving (per-version)
-# -------------------------------------------------------------------
+#  normalization & saving (per-version)
+
 def normalize_and_save(recipes,
                        users,
                        interactions,
@@ -255,7 +250,7 @@ def normalize_and_save(recipes,
     ingredients_rows = []
     steps_rows = []
 
-    # --- 1. process recipes, ingredients, steps ---
+    #  process recipes, ingredients, steps ---
     for r in recipes:
         recipe_rows.append({
             "recipe_id": str(r.get("recipe_id")),
@@ -349,9 +344,8 @@ def normalize_and_save(recipes,
     logger.info(f"ETL CSVs written to version folder: {os.path.basename(new_version_dir)}")
 
 
-# -------------------------------------------------------------------
-#  Main ETL entry
-# -------------------------------------------------------------------
+#  main ETL entry
+
 def main():
     try:
         last_ts = get_last_run_timestamp()

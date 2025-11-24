@@ -27,7 +27,7 @@ from utils import get_logger, OUTPUT_DIR
 
 logger = get_logger("DataValidator")
 
-# Base ETL folder (contains versioned folders)
+# base ETL folder 
 ETL_ROOT_DIR = OUTPUT_DIR
 VALIDATION_DIR = "Validation_Output"
 REPORT_FILE = "validation_report.json"
@@ -68,9 +68,8 @@ def get_latest_etl_version_dir(base_dir: str) -> str | None:
     return candidates[-1][1]
 
 
-# -------------------------------------------------------------------
-#  Individual validators
-# -------------------------------------------------------------------
+#  individual validators
+
 def validate_recipes(df):
     df.columns = df.columns.str.strip()
     clean_df = df.copy()
@@ -300,9 +299,8 @@ def validate_interactions(df):
     return report, len(clean_df), len(quarantine_df)
 
 
-# -------------------------------------------------------------------
-#  Main validation entry
-# -------------------------------------------------------------------
+#  main validation entry
+
 def main():
     logger.info("Starting Validation Pipeline...")
 
