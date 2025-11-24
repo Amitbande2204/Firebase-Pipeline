@@ -9,21 +9,12 @@ Purpose:
         - User interactions (views, likes, cook attempts, ratings)
         - Injected bad data for validation testing
 
-Modules Used:
-    - firebase_admin for Firestore operations
-    - random, datetime for synthetic data generation
-    - utils.py for project configuration, logging, and ID normalization
-
-Output:
-    Populated Firestore collections:
-        - recipes
-        - users
-        - interactions
-
 Notes:
-    This script is the first step of the pipeline orchestration.
-    It is triggered automatically when running run_pipeline.py.
+    This script is typically the FIRST step of the pipeline orchestration.
+    It can be skipped in subsequent runs when data already exists, by using
+    the orchestration flag in run_pipeline.py.
 """
+
 
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -35,11 +26,12 @@ from utils import (
 
 logger = get_logger("FirestoreSetup")
 
-# config 
 NUM_USERS = 30
 NUM_INTERACTIONS = 400
 
-#  location  
+# --------------------------------------------------------
+# User Locations
+# --------------------------------------------------------
 LOCATIONS = {
     "Maharashtra": ["Pune", "Mumbai", "Nagpur", "Nashik", "Thane"],
     "Karnataka": ["Bengaluru", "Mysuru", "Mangaluru", "Hubli"],
@@ -51,7 +43,6 @@ LOCATIONS = {
     "Rajasthan": ["Jaipur", "Udaipur"]
 }
 
-# user names
 USER_NAMES = [
     "Amit Sharma", "Rohan Patil", "Sneha Verma", "Priya Joshi", "Kiran Shetty",
     "Aishwarya Iyer", "Rahul Deshmukh", "Vikas Rao", "Ritika Gupta", "Megha Pandey",
@@ -61,337 +52,515 @@ USER_NAMES = [
     "Manish Mehta", "Divya Mishra", "Karthik Khan", "Shreya Naik", "Neha Kulkarni"
 ]
 
-# primary recipe (IDLI SAMBAR-own recipe) 
+
+def now_utc():
+    return datetime.datetime.utcnow()
+
+
+# --------------------------------------------------------
+# PRIMARY RECIPE — IDLI SAMBAR (Final Optimized Version)
+# --------------------------------------------------------
 IDLI_SAMBAR = {
     "recipe_id": normalize_id("Idli Sambar"),
     "name": "Idli Sambar",
-    "description": "Steamed idlis served with flavorful lentil sambar.",
+    "description": "Traditional South Indian breakfast of steamed idlis served with aromatic sambar.",
     "prep_time_minutes": 20,
-    "cook_time_minutes": 30,
+    "cook_time_minutes": 45,
     "servings": 4,
     "difficulty": "Medium",
     "cuisines": ["South Indian"],
-    "tags": ["breakfast", "vegetarian", "steamed"],
+    "tags": ["breakfast", "vegetarian", "steamed", "traditional"],
+
     "ingredients": [
-        {"ingredient_id": "idli_ing_1", "name": "Parboiled rice", "quantity": 2, "unit": "cups"},
-        {"ingredient_id": "idli_ing_2", "name": "Urad dal", "quantity": 1, "unit": "cup"},
-        {"ingredient_id": "idli_ing_3", "name": "Fenugreek seeds", "quantity": 1, "unit": "tsp"},
-        {"ingredient_id": "idli_ing_4", "name": "Salt", "quantity": 1, "unit": "tsp"},
-        {"ingredient_id": "idli_ing_5", "name": "Toor dal", "quantity": 0.5, "unit": "cup"},
-        {"ingredient_id": "idli_ing_6", "name": "Sambar powder", "quantity": 2, "unit": "tbsp"},
+        {"ingredient_id": "idli_1", "name": "Idli rice", "quantity": 1.5, "unit": "cups"},
+        {"ingredient_id": "idli_2", "name": "Urad dal", "quantity": 0.5, "unit": "cups"},
+        {"ingredient_id": "idli_3", "name": "Fenugreek seeds", "quantity": 0.5, "unit": "tsp"},
+        {"ingredient_id": "idli_4", "name": "Water", "quantity": 0, "unit": "as needed"},
+        {"ingredient_id": "idli_5", "name": "Salt", "quantity": 1, "unit": "tsp"},
+        {"ingredient_id": "idli_6", "name": "Oil (for greasing plates)", "quantity": 1, "unit": "tsp"},
+
+        {"ingredient_id": "sambar_1", "name": "Toor dal", "quantity": 0.5, "unit": "cups"},
+        {"ingredient_id": "sambar_2", "name": "Water", "quantity": 2, "unit": "cups"},
+        {"ingredient_id": "sambar_3", "name": "Turmeric powder", "quantity": 0.25, "unit": "tsp"},
+        {"ingredient_id": "sambar_4", "name": "Salt", "quantity": 0, "unit": "as per taste"},
+
+        {"ingredient_id": "sambar_5", "name": "Onion (sliced)", "quantity": 1, "unit": "small"},
+        {"ingredient_id": "sambar_6", "name": "Tomato (chopped)", "quantity": 1, "unit": "medium"},
+        {"ingredient_id": "sambar_7", "name": "Carrot (diced)", "quantity": 0.5, "unit": "cup"},
+        {"ingredient_id": "sambar_8", "name": "Drumstick pieces", "quantity": 5, "unit": "pcs"},
+        {"ingredient_id": "sambar_9", "name": "Green chilli (slit)", "quantity": 1, "unit": "pc"},
+
+        {"ingredient_id": "sambar_10", "name": "Sambar powder", "quantity": 1.5, "unit": "tbsp"},
+        {"ingredient_id": "sambar_11", "name": "Tamarind", "quantity": 1, "unit": "lemon-sized"},
+        {"ingredient_id": "sambar_12", "name": "Warm water", "quantity": 0.5, "unit": "cup"},
+        {"ingredient_id": "sambar_13", "name": "Jaggery (optional)", "quantity": 0.5, "unit": "tsp"},
+
+        {"ingredient_id": "tadka_1", "name": "Oil", "quantity": 1, "unit": "tbsp"},
+        {"ingredient_id": "tadka_2", "name": "Mustard seeds", "quantity": 0.5, "unit": "tsp"},
+        {"ingredient_id": "tadka_3", "name": "Cumin seeds", "quantity": 0.25, "unit": "tsp"},
+        {"ingredient_id": "tadka_4", "name": "Curry leaves", "quantity": 10, "unit": "leaves"},
+        {"ingredient_id": "tadka_5", "name": "Dry red chilli", "quantity": 1, "unit": "pc"},
+        {"ingredient_id": "tadka_6", "name": "Hing", "quantity": 0.1, "unit": "tsp"},
     ],
+
     "steps": [
-        {"step_no": 1, "instruction": "Soak rice and dal separately for 6 hours.", "duration_minutes": 0},
-        {"step_no": 2, "instruction": "Grind to a smooth batter and ferment overnight.", "duration_minutes": 0},
-        {"step_no": 3, "instruction": "Steam batter in idli molds for 10-12 mins.", "duration_minutes": 12},
-        {"step_no": 4, "instruction": "Boil dal with veggies and spices for sambar.", "duration_minutes": 20},
+        {"step_no": 1, "instruction": "Wash idli rice 2–3 times and soak for 4–5 hours.", "duration_minutes": 5},
+        {"step_no": 2, "instruction": "Wash urad dal + fenugreek seeds and soak for 4 hours.", "duration_minutes": 5},
+        {"step_no": 3, "instruction": "Grind soaked urad dal with little water until fluffy.", "duration_minutes": 10},
+        {"step_no": 4, "instruction": "Grind soaked rice to slightly coarse paste.", "duration_minutes": 10},
+        {"step_no": 5, "instruction": "Mix both pastes with salt until combined.", "duration_minutes": 5},
+        {"step_no": 6, "instruction": "Ferment batter 8–12 hours.", "duration_minutes": 480},
+
+        {"step_no": 7, "instruction": "Heat idli steamer with water.", "duration_minutes": 2},
+        {"step_no": 8, "instruction": "Grease idli plates lightly with oil.", "duration_minutes": 1},
+        {"step_no": 9, "instruction": "Pour batter ¾th into moulds.", "duration_minutes": 2},
+        {"step_no": 10, "instruction": "Steam idlis 10–12 minutes.", "duration_minutes": 12},
+        {"step_no": 11, "instruction": "Cool and remove idlis.", "duration_minutes": 3},
+
+        {"step_no": 12, "instruction": "Add toor dal, 2 cups water, turmeric to pressure cooker.", "duration_minutes": 2},
+        {"step_no": 13, "instruction": "Pressure cook 3–4 whistles.", "duration_minutes": 15},
+        {"step_no": 14, "instruction": "Mash cooked dal.", "duration_minutes": 2},
+
+        {"step_no": 15, "instruction": "Boil onion, tomato, carrot, drumstick, chilli.", "duration_minutes": 15},
+        {"step_no": 16, "instruction": "Add salt and soften vegetables.", "duration_minutes": 15},
+
+        {"step_no": 17, "instruction": "Add mashed dal to vegetables.", "duration_minutes": 1},
+        {"step_no": 18, "instruction": "Add sambar powder, tamarind water, jaggery.", "duration_minutes": 2},
+        {"step_no": 19, "instruction": "Simmer 10 minutes on low flame.", "duration_minutes": 10},
+
+        {"step_no": 20, "instruction": "Heat oil; add mustard seeds to crackle.", "duration_minutes": 2},
+        {"step_no": 21, "instruction": "Add cumin, curry leaves, red chilli, hing.", "duration_minutes": 1},
+        {"step_no": 22, "instruction": "Pour tempering into sambar.", "duration_minutes": 1},
+        {"step_no": 23, "instruction": "Boil sambar 1–2 minutes.", "duration_minutes": 2},
     ],
 }
 
-# syntetic recipes
+# --------------------------------------------------------
+# SYNTHETIC RECIPES (Full List)
+# --------------------------------------------------------
 REALISTIC_RECIPES = [
     {
-        "name": "Veg Fried Rice", "prep": 15, "cook": 10, "diff": "Easy", "tags": ["Chinese", "Lunch"],
+        "name": "Veg Fried Rice",
+        "prep": 15,
+        "cook": 10,
+        "diff": "Easy",
+        "tags": ["Chinese", "Lunch"],
         "ingredients": [
-            ("Basmati Rice", 2, "cups"), ("Carrots", 1, "pc"), ("Beans", 0.5, "cup"), ("Soy Sauce", 1, "tbsp")
+            ("Basmati Rice", 2, "cups"),
+            ("Carrots", 1, "pc"),
+            ("Beans", 0.5, "cup"),
+            ("Soy Sauce", 1, "tbsp"),
+            ("Spring Onion", 2, "tbsp"),
         ],
-        "steps": ["Boil rice and cool it.", "Chop vegetables finely.", "Stir fry veggies on high heat.", "Add rice and sauces, toss well."]
+        "steps": [
+            "Boil rice and cool completely",
+            "Chop vegetables finely",
+            "Stir fry vegetables on high flame",
+            "Add rice, soy sauce, mix well",
+        ]
     },
     {
-        "name": "Paneer Butter Masala", "prep": 20, "cook": 30, "diff": "Medium", "tags": ["Dinner", "North Indian"],
+        "name": "Paneer Butter Masala",
+        "prep": 20,
+        "cook": 25,
+        "diff": "Medium",
+        "tags": ["Indian", "Dinner"],
         "ingredients": [
-            ("Paneer", 250, "g"), ("Butter", 2, "tbsp"), ("Tomato Puree", 1, "cup"), ("Fresh Cream", 0.5, "cup")
+            ("Paneer", 200, "g"),
+            ("Tomatoes", 3, "pcs"),
+            ("Butter", 2, "tbsp"),
+            ("Cream", 3, "tbsp"),
         ],
-        "steps": ["Fry paneer cubes lightly.", "Cook tomato puree with spices.", "Add cream and butter.", "Simmer paneer in gravy."]
+        "steps": [
+            "Blend tomatoes to puree",
+            "Cook puree with spices",
+            "Add paneer cubes",
+            "Finish with cream and butter",
+        ]
     },
     {
-        "name": "Spaghetti Aglio e Olio", "prep": 5, "cook": 15, "diff": "Easy", "tags": ["Italian", "Dinner"],
+        "name": "Aloo Paratha",
+        "prep": 25,
+        "cook": 15,
+        "diff": "Medium",
+        "tags": ["Indian", "Breakfast"],
         "ingredients": [
-            ("Spaghetti", 200, "g"), ("Garlic", 6, "cloves"), ("Olive Oil", 0.25, "cup"), ("Chili Flakes", 1, "tsp")
+            ("Wheat Flour", 2, "cups"),
+            ("Potatoes", 3, "pcs"),
+            ("Ghee", 1, "tbsp"),
         ],
-        "steps": ["Boil pasta until al dente.", "Sauté minced garlic in olive oil.", "Toss pasta in oil.", "Garnish with parsley."]
+        "steps": [
+            "Prepare dough",
+            "Boil and mash potatoes",
+            "Stuff parathas",
+            "Cook on tawa with ghee",
+        ]
     },
     {
-        "name": "Masoor Dal Tadka", "prep": 5, "cook": 20, "diff": "Easy", "tags": ["Comfort", "Indian"],
+        "name": "Masala Dosa",
+        "prep": 30,
+        "cook": 20,
+        "diff": "Medium",
+        "tags": ["South Indian", "Breakfast"],
         "ingredients": [
-            ("Masoor Dal", 1, "cup"), ("Onion", 1, "pc"), ("Tomato", 1, "pc"), ("Cumin Seeds", 1, "tsp")
+            ("Dosa Batter", 2, "cups"),
+            ("Potatoes", 2, "pcs"),
+            ("Curry Leaves", 10, "leaves"),
         ],
-        "steps": ["Wash and pressure cook dal.", "Prepare tadka with ghee, cumin, onion, tomato.", "Mix tadka into dal.", "Simmer for 5 mins."]
+        "steps": [
+            "Prepare masala stuffing",
+            "Spread dosa on tawa",
+            "Add stuffing",
+            "Fold and roast",
+        ]
     },
     {
-        "name": "Chana Masala", "prep": 480, "cook": 40, "diff": "Medium", "tags": ["Vegan", "North Indian"],
+        "name": "Chicken Biryani",
+        "prep": 40,
+        "cook": 45,
+        "diff": "Hard",
+        "tags": ["Indian"],
         "ingredients": [
-            ("Chickpeas", 1.5, "cups"), ("Onion", 2, "pcs"), ("Chana Masala Powder", 2, "tbsp"), ("Ginger Garlic Paste", 1, "tbsp")
+            ("Chicken", 500, "g"),
+            ("Basmati Rice", 2, "cups"),
+            ("Curd", 1, "cup"),
         ],
-        "steps": ["Soak chickpeas overnight.", "Pressure cook until soft.", "Sauté onion paste and spices.", "Cook chickpeas in gravy."]
+        "steps": [
+            "Marinate chicken",
+            "Parboil rice",
+            "Layer rice and chicken",
+            "Cook on dum",
+        ]
     },
     {
-        "name": "Palak Paneer", "prep": 20, "cook": 25, "diff": "Medium", "tags": ["Healthy", "Dinner"],
+        "name": "Pav Bhaji",
+        "prep": 20,
+        "cook": 25,
+        "diff": "Easy",
+        "tags": ["Street Food"],
         "ingredients": [
-            ("Spinach", 2, "bunches"), ("Paneer", 200, "g"), ("Garlic", 4, "cloves"), ("Green Chili", 2, "pcs")
+            ("Pav Bhaji Masala", 2, "tsp"),
+            ("Butter", 3, "tbsp"),
+            ("Vegetables Mix", 2, "cups"),
         ],
-        "steps": ["Blanch spinach and puree it.", "Sauté garlic and spices.", "Add puree and cook.", "Add paneer cubes."]
+        "steps": [
+            "Boil vegetables",
+            "Mash well",
+            "Cook with masala + butter",
+        ]
     },
     {
-        "name": "Chicken Tikka", "prep": 60, "cook": 25, "diff": "Medium", "tags": ["Appetizer", "Non-Veg"],
+        "name": "Poha",
+        "prep": 10,
+        "cook": 5,
+        "diff": "Easy",
+        "tags": ["Breakfast"],
         "ingredients": [
-            ("Chicken Breast", 500, "g"), ("Yogurt", 1, "cup"), ("Tikka Masala", 2, "tbsp"), ("Lemon Juice", 1, "tbsp")
+            ("Poha", 2, "cups"),
+            ("Onion", 1, "pc"),
+            ("Lemon", 1, "pc"),
         ],
-        "steps": ["Marinate chicken with yogurt and spices for 1 hour.", "Skewer the pieces.", "Grill or bake at 200°C.", "Baste with butter."]
+        "steps": [
+            "Rinse poha",
+            "Cook onion + spices",
+            "Add poha",
+        ]
     },
     {
-        "name": "Vegetable Biryani", "prep": 40, "cook": 45, "diff": "Hard", "tags": ["Main Course", "Rice"],
+        "name": "Dal Tadka",
+        "prep": 15,
+        "cook": 20,
+        "diff": "Easy",
+        "tags": ["Indian"],
         "ingredients": [
-            ("Basmati Rice", 2, "cups"), ("Mixed Veggies", 1.5, "cups"), ("Yogurt", 0.5, "cup"), ("Fried Onions", 0.5, "cup")
+            ("Toor Dal", 1, "cup"),
+            ("Ghee", 1, "tbsp"),
         ],
-        "steps": ["Marinate veggies in yogurt.", "Par-boil rice with whole spices.", "Layer veggies and rice.", "Dum cook on low heat."]
+        "steps": [
+            "Boil dal",
+            "Prepare tadka",
+            "Mix and simmer",
+        ]
     },
     {
-        "name": "Rava Upma", "prep": 5, "cook": 15, "diff": "Easy", "tags": ["Breakfast", "South Indian"],
+        "name": "Gulab Jamun",
+        "prep": 10,
+        "cook": 20,
+        "diff": "Medium",
+        "tags": ["Dessert"],
         "ingredients": [
-            ("Rava (Semolina)", 1, "cup"), ("Mustard Seeds", 1, "tsp"), ("Curry Leaves", 5, "pcs"), ("Onion", 1, "pc")
+            ("Milk Powder", 1, "cup"),
+            ("Sugar", 1, "cup"),
         ],
-        "steps": ["Roast rava until fragrant.", "Temper mustard seeds and curry leaves.", "Sauté onions and veggies.", "Add hot water and rava, stir well."]
+        "steps": [
+            "Prepare dough",
+            "Fry balls",
+            "Dip into sugar syrup",
+        ]
     },
     {
-        "name": "Aloo Gobi", "prep": 15, "cook": 25, "diff": "Medium", "tags": ["Lunch", "Dry Curry"],
+        "name": "Mango Shake",
+        "prep": 5,
+        "cook": 0,
+        "diff": "Easy",
+        "tags": ["Drink"],
         "ingredients": [
-            ("Potatoes", 2, "pcs"), ("Cauliflower", 1, "head"), ("Turmeric", 0.5, "tsp"), ("Coriander Powder", 1, "tsp")
+            ("Mango", 1, "pc"),
+            ("Milk", 1, "cup"),
         ],
-        "steps": ["Cut potatoes and cauliflower.", "Fry them until golden.", "Sauté ginger and spices.", "Toss veggies in masala."]
+        "steps": [
+            "Blend all ingredients",
+            "Serve chilled",
+        ]
     },
     {
-        "name": "Fish Curry", "prep": 20, "cook": 30, "diff": "Hard", "tags": ["Seafood", "Dinner"],
+        "name": "Cutlet",
+        "prep": 20,
+        "cook": 10,
+        "diff": "Medium",
+        "tags": ["Snack"],
         "ingredients": [
-            ("Fish Fillet", 500, "g"), ("Coconut Milk", 1.5, "cups"), ("Tamarind Paste", 1, "tbsp"), ("Curry Leaves", 6, "pcs")
+            ("Breadcrumbs", 1, "cup"),
+            ("Potatoes", 2, "pcs"),
         ],
-        "steps": ["Marinate fish with turmeric.", "Make a curry base with coconut milk.", "Add tamarind and boil.", "Poach fish in the curry."]
+        "steps": [
+            "Make mixture",
+            "Shape cutlets",
+            "Shallow fry",
+        ]
     },
     {
-        "name": "Egg Bhurji", "prep": 5, "cook": 10, "diff": "Easy", "tags": ["Breakfast", "Protein"],
+        "name": "Upma",
+        "prep": 10,
+        "cook": 10,
+        "diff": "Easy",
+        "tags": ["Breakfast"],
         "ingredients": [
-            ("Eggs", 4, "pcs"), ("Onion", 2, "pcs"), ("Green Chili", 2, "pcs"), ("Coriander", 1, "tbsp")
+            ("Rava", 1, "cup"),
+            ("Vegetables", 1, "cup"),
         ],
-        "steps": ["Sauté chopped onions and chilies.", "Crack eggs into the pan.", "Scramble continuously.", "Garnish with coriander."]
+        "steps": [
+            "Roast rava",
+            "Cook vegetables",
+            "Mix with water + spices",
+        ]
     },
     {
-        "name": "Lemon Rice", "prep": 10, "cook": 10, "diff": "Easy", "tags": ["South Indian", "Lunch"],
+        "name": "Idiyappam",
+        "prep": 20,
+        "cook": 10,
+        "diff": "Medium",
+        "tags": ["Breakfast"],
         "ingredients": [
-            ("Cooked Rice", 3, "cups"), ("Lemon Juice", 2, "tbsp"), ("Peanuts", 2, "tbsp"), ("Turmeric", 0.5, "tsp")
+            ("Rice Flour", 1, "cup"),
+            ("Coconut", 2, "tbsp"),
         ],
-        "steps": ["Heat oil and roast peanuts.", "Add mustard seeds and turmeric.", "Mix rice gently.", "Turn off heat and add lemon juice."]
+        "steps": [
+            "Prepare dough",
+            "Press into noodles",
+            "Steam",
+        ]
     },
     {
-        "name": "Mushroom Masala", "prep": 15, "cook": 25, "diff": "Medium", "tags": ["Dinner", "Vegetarian"],
+        "name": "Fish Fry",
+        "prep": 15,
+        "cook": 10,
+        "diff": "Easy",
+        "tags": ["Seafood"],
         "ingredients": [
-            ("Mushrooms", 200, "g"), ("Onion", 2, "pcs"), ("Tomato", 1, "pc"), ("Garam Masala", 1, "tsp")
+            ("Fish", 4, "pcs"),
+            ("Masala", 2, "tbsp"),
         ],
-        "steps": ["Sauté onion and tomato paste.", "Add spices and cook oil separates.", "Add sliced mushrooms.", "Cook covered until soft."]
+        "steps": [
+            "Marinate fish",
+            "Shallow fry",
+        ]
     },
     {
-        "name": "Rajma Chawal", "prep": 480, "cook": 40, "diff": "Medium", "tags": ["Comfort", "Lunch"],
+        "name": "Khichdi",
+        "prep": 15,
+        "cook": 20,
+        "diff": "Easy",
+        "tags": ["Comfort Food"],
         "ingredients": [
-            ("Kidney Beans", 1.5, "cups"), ("Onion", 2, "pcs"), ("Tomato Puree", 1, "cup"), ("Rajma Masala", 2, "tbsp")
+            ("Rice", 1, "cup"),
+            ("Dal", 0.5, "cup"),
         ],
-        "steps": ["Soak beans overnight.", "Pressure cook with salt.", "Prepare spicy onion-tomato gravy.", "Simmer beans in gravy."]
+        "steps": [
+            "Pressure cook all ingredients",
+            "Add ghee & serve",
+        ]
     },
-    {
-        "name": "Vegetable Pulao", "prep": 15, "cook": 20, "diff": "Easy", "tags": ["One Pot", "Rice"],
-        "ingredients": [
-            ("Basmati Rice", 1.5, "cups"), ("Peas", 0.5, "cup"), ("Carrots", 0.5, "cup"), ("Whole Spices", 1, "tbsp")
-        ],
-        "steps": ["Sauté whole spices in ghee.", "Add veggies and rice.", "Add water (1:2 ratio).", "Cover and cook until fluffy."]
-    },
-    {
-        "name": "Tomato Soup", "prep": 10, "cook": 20, "diff": "Easy", "tags": ["Soup", "Healthy"],
-        "ingredients": [
-            ("Tomatoes", 6, "pcs"), ("Garlic", 4, "cloves"), ("Butter", 1, "tbsp"), ("Black Pepper", 0.5, "tsp")
-        ],
-        "steps": ["Roast tomatoes and garlic.", "Blend into a smooth puree.", "Strain into a pot.", "Simmer with butter and pepper."]
-    },
-    {
-        "name": "Poha", "prep": 10, "cook": 10, "diff": "Easy", "tags": ["Breakfast", "Maharashtrian"],
-        "ingredients": [
-            ("Thick Poha", 2, "cups"), ("Onion", 1, "pc"), ("Mustard Seeds", 1, "tsp"), ("Peanuts", 2, "tbsp")
-        ],
-        "steps": ["Rinse poha in a colander.", "Sauté peanuts and mustard seeds.", "Add onions and turmeric.", "Mix poha and steam covered."]
-    }
 ]
 
-#   bad data injection for validation 
+# --------------------------------------------------------
+# BAD DATA INJECTION FOR TESTING
+# --------------------------------------------------------
 def inject_bad_data(db, user_ids, recipe_ids):
-    logger.warning("⚠️  INJECTING INVALID DATA FOR VALIDATION TESTING...")
-    
-    # 1. bad recipe: negative prep time
-    bad_recipe_1 = {
-        "recipe_id": "bad_recipe_negative_time",
-        "name": "Time Traveler Soup",
-        "description": "Cooks before you start.",
+    logger.warning("Injecting invalid test data...")
+
+    ts = now_utc()
+
+    bad_recipe = {
+        "recipe_id": "recipe_negative_prep",
+        "name": "Impossible Dish",
+        "description": "Invalid negative prep time",
         "prep_time_minutes": -10,
         "cook_time_minutes": 20,
         "difficulty": "Easy",
         "servings": 2,
         "ingredients": [],
-        "steps": []
+        "steps": [],
+        "created_at": ts,
+        "updated_at": ts
     }
-    db.collection("recipes").document(bad_recipe_1["recipe_id"]).set(bad_recipe_1)
 
-    # 2. bad recipe: invalid difficulty
-    bad_recipe_2 = {
-        "recipe_id": "bad_recipe_invalid_diff",
-        "name": "Impossible Cake",
-        "description": "Difficulty is not in allowed list.",
-        "prep_time_minutes": 20,
-        "cook_time_minutes": 20,
-        "difficulty": "Expert", 
-        "servings": 2,
-        "ingredients": [],
-        "steps": []
-    }
-    db.collection("recipes").document(bad_recipe_2["recipe_id"]).set(bad_recipe_2)
-
-    # 3. bad recipe: missing name
-    bad_recipe_3 = {
-        "recipe_id": "bad_recipe_no_name",
-        "name": "", 
-        "description": "Has no name.",
-        "prep_time_minutes": 10,
-        "cook_time_minutes": 10,
-        "difficulty": "Easy",
-        "servings": 2,
-        "ingredients": [],
-        "steps": []
-    }
-    db.collection("recipes").document(bad_recipe_3["recipe_id"]).set(bad_recipe_3)
-
-    # 4. bad interaction: rating out of bounds
-    bad_inter_1 = {
-        "interaction_id": "bad_int_rating_high",
+    bad_inter = {
+        "interaction_id": "invalid_rating_high",
         "user_id": random.choice(user_ids),
         "recipe_id": random.choice(recipe_ids),
         "type": "rating",
-        "rating": 10, 
-        "timestamp": datetime.datetime.utcnow()
+        "rating": 10,  # invalid
+        "timestamp": ts,
+        "created_at": ts,
+        "updated_at": ts
     }
-    db.collection("interactions").document(bad_inter_1["interaction_id"]).set(bad_inter_1)
 
-    # 5. bad interaction: invalid type
-    bad_inter_2 = {
-        "interaction_id": "bad_int_wrong_type",
-        "user_id": random.choice(user_ids),
-        "recipe_id": random.choice(recipe_ids),
-        "type": "shared_on_facebook", 
-        "timestamp": datetime.datetime.utcnow()
-    }
-    db.collection("interactions").document(bad_inter_2["interaction_id"]).set(bad_inter_2)
-    
-    logger.info(" Injected 3 Bad Recipes & 2 Bad Interactions.")
+    db.collection("recipes").document(bad_recipe["recipe_id"]).set(bad_recipe)
+    db.collection("interactions").document(bad_inter["interaction_id"]).set(bad_inter)
 
 
+# --------------------------------------------------------
+# MAIN SEEDING PROCESS
+# --------------------------------------------------------
 def main():
     try:
         if not firebase_admin._apps:
             cred = credentials.Certificate(SERVICE_ACCOUNT_PATH)
             firebase_admin.initialize_app(cred, {"projectId": PROJECT_ID})
-        
-        db = firestore.client()
-        
-        # 1. add primary recipe
-        logger.info("Adding Primary Recipe...")
-        db.collection("recipes").document(IDLI_SAMBAR["recipe_id"]).set(IDLI_SAMBAR)
-        
-        # 2. Add Synthetic 
-        logger.info("Adding 18 Synthetic Recipes with realistic steps...")
-        for r in REALISTIC_RECIPES:
-            rid = normalize_id(r["name"])
-            
-            # format ingredients for firestore
-            firestore_ingredients = []
-            for i, (name, qty, unit) in enumerate(r["ingredients"]):
-                firestore_ingredients.append({
-                    "ingredient_id": f"{rid}_ing_{i}",
-                    "name": name,
-                    "quantity": qty,
-                    "unit": unit
-                })
-            
-            # format steps for firestore
-            firestore_steps = []
-            for i, step_desc in enumerate(r["steps"]):
-                firestore_steps.append({
-                    "step_no": i + 1,
-                    "instruction": step_desc,
-                    "duration_minutes": max(5, r["cook"] // len(r["steps"])) # Approx duration
-                })
 
-            recipe_doc = {
+        db = firestore.client()
+        ts = now_utc()
+
+        # ---------------- Primary Recipe ----------------
+        logger.info("Adding Primary Recipe: Idli Sambar")
+        recipe_doc = IDLI_SAMBAR.copy()
+        recipe_doc["created_at"] = ts
+        recipe_doc["updated_at"] = ts
+        db.collection("recipes").document(recipe_doc["recipe_id"]).set(recipe_doc)
+
+        # ---------------- Synthetic Recipes -------------
+        logger.info("Adding Synthetic Recipes...")
+        synthetic_ids = []
+
+        for rec in REALISTIC_RECIPES:
+            rid = normalize_id(rec["name"])
+            synthetic_ids.append(rid)
+
+            ingredients = [
+                {
+                    "ingredient_id": f"{rid}_ing_{i}",
+                    "name": ing[0],
+                    "quantity": ing[1],
+                    "unit": ing[2]
+                }
+                for i, ing in enumerate(rec["ingredients"])
+            ]
+
+            steps = [
+                {
+                    "step_no": i + 1,
+                    "instruction": step,
+                    "duration_minutes": max(5, rec["cook"] // len(rec["steps"]))
+                }
+                for i, step in enumerate(rec["steps"])
+            ]
+
+            db.collection("recipes").document(rid).set({
                 "recipe_id": rid,
-                "name": r["name"],
-                "description": f"Authentic {r['name']} recipe.",
-                "prep_time_minutes": r["prep"],
-                "cook_time_minutes": r["cook"],
+                "name": rec["name"],
+                "description": f"{rec['name']} recipe",
+                "prep_time_minutes": rec["prep"],
+                "cook_time_minutes": rec["cook"],
+                "difficulty": rec["diff"],
                 "servings": 2,
-                "difficulty": r["diff"],
-                "tags": r["tags"],
-                "cuisines": ["Indian" if "Masala" in r["name"] or "Biryani" in r["name"] else "Global"],
-                "ingredients": firestore_ingredients,
-                "steps": firestore_steps
-            }
-            db.collection("recipes").document(rid).set(recipe_doc)
-            
-        # 3. add users
-        logger.info("Adding 30 Users with realistic locations...")
+                "tags": rec["tags"],
+                "cuisines": ["Global"],
+                "ingredients": ingredients,
+                "steps": steps,
+                "created_at": ts,
+                "updated_at": ts
+            })
+
+        # ---------------- Users -------------------------
+        logger.info("Adding Users...")
         user_ids = []
-        states = list(LOCATIONS.keys())
+
         for i, name in enumerate(USER_NAMES):
             uid = normalize_id(name)
-            state = random.choice(states)
+            user_ids.append(uid)
+
+            state = random.choice(list(LOCATIONS.keys()))
             city = random.choice(LOCATIONS[state])
-            
+
             db.collection("users").document(uid).set({
                 "user_id": uid,
                 "name": name,
-                "state": state, 
                 "city": city,
+                "state": state,
                 "country": "India",
-                "email": f"user{i}@example.com"
+                "email": f"user{i}@example.com",
+                "created_at": ts,
+                "updated_at": ts
             })
-            user_ids.append(uid)
-            
-        # 4. interactions
-        logger.info("Generating Interactions...")
-        all_recipe_ids = [normalize_id(r["name"]) for r in REALISTIC_RECIPES] + [IDLI_SAMBAR["recipe_id"]]
-        
+
+        # ---------------- Interactions -------------------
+        logger.info("Adding Interactions...")
+        all_recipes = synthetic_ids + [recipe_doc["recipe_id"]]
+
         batch = db.batch()
-        batch_count = 0
+        bcount = 0
+
         for i in range(NUM_INTERACTIONS):
-            t = random.choices(["view", "like", "cook_attempt", "rating"], weights=[0.6, 0.2, 0.1, 0.1])[0]
-            int_id = f"int_{i:04d}"
-            data = {
-                "interaction_id": int_id,
-                "user_id": random.choice(user_ids),
-                "recipe_id": random.choice(all_recipe_ids),
+            t = random.choice(["view", "like", "cook_attempt", "rating"])
+            rec_id = random.choice(all_recipes)
+            uid = random.choice(user_ids)
+
+            inter = {
+                "interaction_id": f"int_{i:04d}",
+                "user_id": uid,
+                "recipe_id": rec_id,
                 "type": t,
-                "timestamp": datetime.datetime.utcnow(),
                 "rating": random.randint(1, 5) if t == "rating" else None,
-                "like": True if t == "like" else None
+                "like": True if t == "like" else None,
+                "timestamp": ts,
+                "created_at": ts,
+                "updated_at": ts,
             }
-            batch.set(db.collection("interactions").document(int_id), data)
-            batch_count += 1
-            if batch_count == 400:
+
+            batch.set(
+                db.collection("interactions").document(inter["interaction_id"]),
+                inter
+            )
+            bcount += 1
+
+            if bcount == 400:
                 batch.commit()
                 batch = db.batch()
-                batch_count = 0
-        if batch_count > 0: batch.commit()
+                bcount = 0
 
-        # 5. inject bad data
-        inject_bad_data(db, user_ids, all_recipe_ids)
+        if bcount > 0:
+            batch.commit()
 
-        logger.info("Firestore Setup Complete (Realistic Data + Bad Data Injection).")
-        
+        # ---------------- Bad Data -----------------------
+        inject_bad_data(db, user_ids, all_recipes)
+
+        logger.info("Firestore setup complete!")
+
     except Exception as e:
-        logger.error(f"Setup failed: {e}")
+        logger.error(f"Firestore setup failed: {e}")
         raise
+
 
 if __name__ == "__main__":
     main()

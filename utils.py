@@ -15,10 +15,9 @@ import os
 import uuid
 import datetime
 import logging
-from dotenv import load_dotenv
 
-# load environment variables from a .env file if present
-load_dotenv()
+
+
 
 # configuration
 # project Config

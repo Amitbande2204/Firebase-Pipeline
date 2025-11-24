@@ -18,11 +18,13 @@ idiyappam_ing_1,idiyappam,Coconut,2.0,tbsp
 idli_1,idli_sambar,Idli rice,1.5,cups
 idli_2,idli_sambar,Urad dal,0.5,cups
 idli_3,idli_sambar,Fenugreek seeds,0.5,tsp
+idli_4,idli_sambar,Water,0.0,as needed
 idli_5,idli_sambar,Salt,1.0,tsp
 idli_6,idli_sambar,Oil (for greasing plates),1.0,tsp
 sambar_1,idli_sambar,Toor dal,0.5,cups
 sambar_2,idli_sambar,Water,2.0,cups
 sambar_3,idli_sambar,Turmeric powder,0.25,tsp
+sambar_4,idli_sambar,Salt,0.0,as per taste
 sambar_5,idli_sambar,Onion (sliced),1.0,small
 sambar_6,idli_sambar,Tomato (chopped),1.0,medium
 sambar_7,idli_sambar,Carrot (diced),0.5,cup

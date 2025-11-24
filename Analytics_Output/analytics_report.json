@@ -1,39 +1,39 @@
 {
-  "export_date": "2025-11-20T18:24:33.318789",
-  "total_recipes_clean": 19,
+  "export_date": "2025-11-24T11:02:22.548896",
+  "total_recipes_clean": 16,
   "total_users_clean": 30,
   "total_interactions_clean": 400,
   "top_views_summary": [
     {
-      "name": "Vegetable Biryani",
-      "view_count": 17
+      "name": "Aloo Paratha",
+      "view_count": 9
     },
     {
-      "name": "Poha",
-      "view_count": 17
+      "name": "Dal Tadka",
+      "view_count": 9
     },
     {
-      "name": "Aloo Gobi",
-      "view_count": 16
+      "name": "Pav Bhaji",
+      "view_count": 8
     },
     {
-      "name": "Egg Bhurji",
-      "view_count": 16
+      "name": "Chicken Biryani",
+      "view_count": 7
     },
     {
-      "name": "Idli Sambar",
-      "view_count": 16
+      "name": "Fish Fry",
+      "view_count": 7
     }
   ],
   "user_engagement_summary": [
     {
       "user_id": "aishwarya_iyer",
       "name": "Aishwarya Iyer",
-      "city": "Hyderabad",
-      "state": "Telangana",
+      "city": "Madurai",
+      "state": "Tamil Nadu",
       "country": "India",
       "email": "user5@example.com",
-      "total_interactions": 10
+      "total_interactions": 7
     },
     {
       "user_id": "amit_sharma",
@@ -42,220 +42,220 @@
       "state": "Rajasthan",
       "country": "India",
       "email": "user0@example.com",
-      "total_interactions": 18
+      "total_interactions": 16
     },
     {
       "user_id": "anita_mehta",
       "name": "Anita Mehta",
-      "city": "Jaipur",
-      "state": "Rajasthan",
+      "city": "Warangal",
+      "state": "Telangana",
       "country": "India",
       "email": "user11@example.com",
-      "total_interactions": 14
+      "total_interactions": 15
     },
     {
       "user_id": "anjali_khan",
       "name": "Anjali Khan",
-      "city": "Nashik",
-      "state": "Maharashtra",
+      "city": "Mysuru",
+      "state": "Karnataka",
       "country": "India",
       "email": "user13@example.com",
-      "total_interactions": 12
+      "total_interactions": 18
     },
     {
       "user_id": "arjun_pandey",
       "name": "Arjun Pandey",
-      "city": "Madurai",
-      "state": "Tamil Nadu",
+      "city": "Nagpur",
+      "state": "Maharashtra",
       "country": "India",
       "email": "user23@example.com",
-      "total_interactions": 10
+      "total_interactions": 15
     },
     {
       "user_id": "deepak_mishra",
       "name": "Deepak Mishra",
-      "city": "Ahmedabad",
-      "state": "Gujarat",
+      "city": "Warangal",
+      "state": "Telangana",
       "country": "India",
       "email": "user12@example.com",
-      "total_interactions": 12
+      "total_interactions": 15
     },
     {
       "user_id": "divya_mishra",
       "name": "Divya Mishra",
-      "city": "Howrah",
+      "city": "Kolkata",
       "state": "West Bengal",
       "country": "India",
       "email": "user26@example.com",
-      "total_interactions": 10
+      "total_interactions": 19
     },
     {
       "user_id": "harsh_shetty",
       "name": "Harsh Shetty",
-      "city": "Udaipur",
-      "state": "Rajasthan",
+      "city": "Salem",
+      "state": "Tamil Nadu",
       "country": "India",
       "email": "user18@example.com",
-      "total_interactions": 14
+      "total_interactions": 15
     },
     {
       "user_id": "ishita_chauhan",
       "name": "Ishita Chauhan",
-      "city": "Warangal",
-      "state": "Telangana",
+      "city": "Jaipur",
+      "state": "Rajasthan",
       "country": "India",
       "email": "user24@example.com",
-      "total_interactions": 13
+      "total_interactions": 18
     },
     {
       "user_id": "karthik_khan",
       "name": "Karthik Khan",
-      "city": "Thane",
-      "state": "Maharashtra",
+      "city": "New Delhi",
+      "state": "Delhi",
       "country": "India",
       "email": "user27@example.com",
-      "total_interactions": 14
+      "total_interactions": 12
     },
     {
       "user_id": "kavya_rao",
       "name": "Kavya Rao",
-      "city": "Kolkata",
+      "city": "Howrah",
       "state": "West Bengal",
       "country": "India",
       "email": "user21@example.com",
-      "total_interactions": 15
+      "total_interactions": 12
     },
     {
       "user_id": "kiran_shetty",
       "name": "Kiran Shetty",
-      "city": "Jaipur",
-      "state": "Rajasthan",
+      "city": "Nagpur",
+      "state": "Maharashtra",
       "country": "India",
       "email": "user4@example.com",
-      "total_interactions": 16
+      "total_interactions": 9
     },
     {
       "user_id": "manish_mehta",
       "name": "Manish Mehta",
-      "city": "Nashik",
+      "city": "Pune",
       "state": "Maharashtra",
       "country": "India",
       "email": "user25@example.com",
-      "total_interactions": 14
+      "total_interactions": 9
     },
     {
       "user_id": "megha_pandey",
       "name": "Megha Pandey",
-      "city": "Kolkata",
-      "state": "West Bengal",
+      "city": "Warangal",
+      "state": "Telangana",
       "country": "India",
       "email": "user9@example.com",
-      "total_interactions": 8
+      "total_interactions": 12
     },
     {
       "user_id": "neha_kulkarni",
       "name": "Neha Kulkarni",
-      "city": "Hyderabad",
-      "state": "Telangana",
+      "city": "Jaipur",
+      "state": "Rajasthan",
       "country": "India",
       "email": "user29@example.com",
-      "total_interactions": 11
+      "total_interactions": 17
     },
     {
       "user_id": "nikhil_patil",
       "name": "Nikhil Patil",
-      "city": "Hubli",
-      "state": "Karnataka",
+      "city": "Howrah",
+      "state": "West Bengal",
       "country": "India",
       "email": "user15@example.com",
-      "total_interactions": 15
+      "total_interactions": 9
     },
     {
       "user_id": "pooja_joshi",
       "name": "Pooja Joshi",
-      "city": "Jaipur",
-      "state": "Rajasthan",
+      "city": "Pune",
+      "state": "Maharashtra",
       "country": "India",
       "email": "user17@example.com",
-      "total_interactions": 14
+      "total_interactions": 13
     },
     {
       "user_id": "priya_joshi",
       "name": "Priya Joshi",
-      "city": "Ahmedabad",
-      "state": "Gujarat",
+      "city": "New Delhi",
+      "state": "Delhi",
       "country": "India",
       "email": "user3@example.com",
-      "total_interactions": 12
+      "total_interactions": 15
     },
     {
       "user_id": "rahul_deshmukh",
       "name": "Rahul Deshmukh",
-      "city": "Udaipur",
-      "state": "Rajasthan",
+      "city": "Bengaluru",
+      "state": "Karnataka",
       "country": "India",
       "email": "user6@example.com",
-      "total_interactions": 14
+      "total_interactions": 9
     },
     {
       "user_id": "ravi_sharma",
       "name": "Ravi Sharma",
-      "city": "Hyderabad",
-      "state": "Telangana",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
       "country": "India",
       "email": "user14@example.com",
-      "total_interactions": 17
+      "total_interactions": 9
     },
     {
       "user_id": "ritika_gupta",
       "name": "Ritika Gupta",
-      "city": "Hyderabad",
-      "state": "Telangana",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
       "country": "India",
       "email": "user8@example.com",
-      "total_interactions": 16
+      "total_interactions": 13
     },
     {
       "user_id": "rohan_patil",
       "name": "Rohan Patil",
-      "city": "New Delhi",
-      "state": "Delhi",
+      "city": "Mangaluru",
+      "state": "Karnataka",
       "country": "India",
       "email": "user1@example.com",
-      "total_interactions": 12
+      "total_interactions": 14
     },
     {
       "user_id": "sakshi_gupta",
       "name": "Sakshi Gupta",
-      "city": "Hyderabad",
-      "state": "Telangana",
+      "city": "Madurai",
+      "state": "Tamil Nadu",
       "country": "India",
       "email": "user22@example.com",
-      "total_interactions": 18
+      "total_interactions": 11
     },
     {
       "user_id": "sanjay_iyer",
       "name": "Sanjay Iyer",
-      "city": "Nagpur",
-      "state": "Maharashtra",
+      "city": "Udaipur",
+      "state": "Rajasthan",
       "country": "India",
       "email": "user19@example.com",
-      "total_interactions": 11
+      "total_interactions": 15
     },
     {
       "user_id": "shreya_naik",
       "name": "Shreya Naik",
-      "city": "Kolkata",
-      "state": "West Bengal",
+      "city": "Warangal",
+      "state": "Telangana",
       "country": "India",
       "email": "user28@example.com",
-      "total_interactions": 15
+      "total_interactions": 8
     },
     {
       "user_id": "sneha_verma",
       "name": "Sneha Verma",
-      "city": "Warangal",
-      "state": "Telangana",
+      "city": "Howrah",
+      "state": "West Bengal",
       "country": "India",
       "email": "user2@example.com",
       "total_interactions": 14
@@ -263,8 +263,8 @@
     {
       "user_id": "suresh_chauhan",
       "name": "Suresh Chauhan",
-      "city": "New Delhi",
-      "state": "Delhi",
+      "city": "Hyderabad",
+      "state": "Telangana",
       "country": "India",
       "email": "user10@example.com",
       "total_interactions": 11
@@ -272,336 +272,314 @@
     {
       "user_id": "tanvi_verma",
       "name": "Tanvi Verma",
-      "city": "Thane",
+      "city": "Nagpur",
       "state": "Maharashtra",
       "country": "India",
       "email": "user16@example.com",
-      "total_interactions": 13
+      "total_interactions": 14
     },
     {
       "user_id": "varun_deshmukh",
       "name": "Varun Deshmukh",
-      "city": "Kolkata",
-      "state": "West Bengal",
+      "city": "Coimbatore",
+      "state": "Tamil Nadu",
       "country": "India",
       "email": "user20@example.com",
-      "total_interactions": 14
+      "total_interactions": 18
     },
     {
       "user_id": "vikas_rao",
       "name": "Vikas Rao",
-      "city": "Chennai",
-      "state": "Tamil Nadu",
+      "city": "Ahmedabad",
+      "state": "Gujarat",
       "country": "India",
       "email": "user7@example.com",
-      "total_interactions": 13
+      "total_interactions": 18
     }
   ],
   "popularity_summary": [
     {
-      "recipe_id": "poha",
-      "name": "Poha",
-      "popularity_score": 87
-    },
-    {
-      "recipe_id": "chicken_tikka",
-      "name": "Chicken Tikka",
-      "popularity_score": 81
-    },
-    {
-      "recipe_id": "vegetable_biryani",
-      "name": "Vegetable Biryani",
-      "popularity_score": 79
-    },
-    {
-      "recipe_id": "aloo_gobi",
-      "name": "Aloo Gobi",
-      "popularity_score": 76
-    },
-    {
-      "recipe_id": "chana_masala",
-      "name": "Chana Masala",
-      "popularity_score": 71
-    },
-    {
-      "recipe_id": "fish_curry",
-      "name": "Fish Curry",
-      "popularity_score": 70
-    },
-    {
       "recipe_id": "idli_sambar",
       "name": "Idli Sambar",
-      "popularity_score": 70
+      "popularity_score": 171
     },
     {
-      "recipe_id": "mushroom_masala",
-      "name": "Mushroom Masala",
-      "popularity_score": 70
+      "recipe_id": "mango_shake",
+      "name": "Mango Shake",
+      "popularity_score": 137
     },
     {
-      "recipe_id": "tomato_soup",
-      "name": "Tomato Soup",
-      "popularity_score": 61
+      "recipe_id": "cutlet",
+      "name": "Cutlet",
+      "popularity_score": 125
     },
     {
-      "recipe_id": "masoor_dal_tadka",
-      "name": "Masoor Dal Tadka",
-      "popularity_score": 58
+      "recipe_id": "fish_fry",
+      "name": "Fish Fry",
+      "popularity_score": 117
+    },
+    {
+      "recipe_id": "gulab_jamun",
+      "name": "Gulab Jamun",
+      "popularity_score": 116
+    },
+    {
+      "recipe_id": "khichdi",
+      "name": "Khichdi",
+      "popularity_score": 115
+    },
+    {
+      "recipe_id": "masala_dosa",
+      "name": "Masala Dosa",
+      "popularity_score": 112
+    },
+    {
+      "recipe_id": "idiyappam",
+      "name": "Idiyappam",
+      "popularity_score": 107
+    },
+    {
+      "recipe_id": "poha",
+      "name": "Poha",
+      "popularity_score": 104
+    },
+    {
+      "recipe_id": "pav_bhaji",
+      "name": "Pav Bhaji",
+      "popularity_score": 100
     }
   ],
   "interaction_summary": [
     {
-      "recipe_id": "aloo_gobi",
-      "cook_attempt": 4,
-      "like": 4,
-      "rating": 0,
-      "view": 16
-    },
-    {
-      "recipe_id": "chana_masala",
-      "cook_attempt": 3,
-      "like": 3,
-      "rating": 6,
-      "view": 14
-    },
-    {
-      "recipe_id": "chicken_tikka",
-      "cook_attempt": 3,
-      "like": 7,
-      "rating": 3,
-      "view": 10
-    },
-    {
-      "recipe_id": "egg_bhurji",
-      "cook_attempt": 0,
-      "like": 5,
+      "recipe_id": "aloo_paratha",
+      "cook_attempt": 5,
+      "like": 6,
       "rating": 4,
-      "view": 16
-    },
-    {
-      "recipe_id": "fish_curry",
-      "cook_attempt": 4,
-      "like": 3,
-      "rating": 2,
-      "view": 11
-    },
-    {
-      "recipe_id": "idli_sambar",
-      "cook_attempt": 2,
-      "like": 6,
-      "rating": 2,
-      "view": 16
-    },
-    {
-      "recipe_id": "lemon_rice",
-      "cook_attempt": 2,
-      "like": 2,
-      "rating": 0,
-      "view": 13
-    },
-    {
-      "recipe_id": "masoor_dal_tadka",
-      "cook_attempt": 1,
-      "like": 6,
-      "rating": 2,
-      "view": 14
-    },
-    {
-      "recipe_id": "mushroom_masala",
-      "cook_attempt": 4,
-      "like": 4,
-      "rating": 0,
-      "view": 10
-    },
-    {
-      "recipe_id": "palak_paneer",
-      "cook_attempt": 1,
-      "like": 5,
-      "rating": 0,
-      "view": 13
-    },
-    {
-      "recipe_id": "paneer_butter_masala",
-      "cook_attempt": 2,
-      "like": 3,
-      "rating": 1,
-      "view": 8
-    },
-    {
-      "recipe_id": "poha",
-      "cook_attempt": 2,
-      "like": 10,
-      "rating": 0,
-      "view": 17
-    },
-    {
-      "recipe_id": "rajma_chawal",
-      "cook_attempt": 2,
-      "like": 2,
-      "rating": 0,
       "view": 9
     },
     {
-      "recipe_id": "rava_upma",
-      "cook_attempt": 1,
-      "like": 2,
-      "rating": 1,
-      "view": 15
-    },
-    {
-      "recipe_id": "spaghetti_aglio_e_olio",
-      "cook_attempt": 0,
-      "like": 7,
+      "recipe_id": "chicken_biryani",
+      "cook_attempt": 5,
+      "like": 5,
       "rating": 3,
       "view": 7
     },
     {
-      "recipe_id": "tomato_soup",
-      "cook_attempt": 0,
+      "recipe_id": "cutlet",
+      "cook_attempt": 7,
       "like": 9,
-      "rating": 2,
-      "view": 12
+      "rating": 4,
+      "view": 2
+    },
+    {
+      "recipe_id": "dal_tadka",
+      "cook_attempt": 4,
+      "like": 5,
+      "rating": 7,
+      "view": 9
+    },
+    {
+      "recipe_id": "fish_fry",
+      "cook_attempt": 6,
+      "like": 6,
+      "rating": 10,
+      "view": 7
+    },
+    {
+      "recipe_id": "gulab_jamun",
+      "cook_attempt": 6,
+      "like": 6,
+      "rating": 11,
+      "view": 4
+    },
+    {
+      "recipe_id": "idiyappam",
+      "cook_attempt": 4,
+      "like": 8,
+      "rating": 12,
+      "view": 3
+    },
+    {
+      "recipe_id": "idli_sambar",
+      "cook_attempt": 10,
+      "like": 10,
+      "rating": 8,
+      "view": 5
+    },
+    {
+      "recipe_id": "khichdi",
+      "cook_attempt": 6,
+      "like": 5,
+      "rating": 12,
+      "view": 6
+    },
+    {
+      "recipe_id": "mango_shake",
+      "cook_attempt": 8,
+      "like": 7,
+      "rating": 8,
+      "view": 6
+    },
+    {
+      "recipe_id": "masala_dosa",
+      "cook_attempt": 6,
+      "like": 7,
+      "rating": 7,
+      "view": 3
+    },
+    {
+      "recipe_id": "paneer_butter_masala",
+      "cook_attempt": 6,
+      "like": 5,
+      "rating": 5,
+      "view": 4
+    },
+    {
+      "recipe_id": "pav_bhaji",
+      "cook_attempt": 4,
+      "like": 6,
+      "rating": 11,
+      "view": 8
+    },
+    {
+      "recipe_id": "poha",
+      "cook_attempt": 5,
+      "like": 6,
+      "rating": 9,
+      "view": 6
+    },
+    {
+      "recipe_id": "upma",
+      "cook_attempt": 6,
+      "like": 3,
+      "rating": 3,
+      "view": 5
     },
     {
       "recipe_id": "veg_fried_rice",
-      "cook_attempt": 1,
-      "like": 4,
-      "rating": 1,
-      "view": 13
-    },
-    {
-      "recipe_id": "vegetable_biryani",
-      "cook_attempt": 2,
-      "like": 8,
-      "rating": 1,
-      "view": 17
-    },
-    {
-      "recipe_id": "vegetable_pulao",
-      "cook_attempt": 1,
+      "cook_attempt": 4,
       "like": 6,
-      "rating": 2,
-      "view": 8
+      "rating": 4,
+      "view": 6
     }
   ],
   "insights": {
     "1_common_ingredients": {
-      "Onion": 7,
-      "Garlic": 3,
-      "Basmati Rice": 3,
-      "Turmeric": 2,
-      "Curry Leaves": 2
+      "Potatoes": 3,
+      "Ghee": 2,
+      "Basmati Rice": 2,
+      "Butter": 2,
+      "Chicken": 1
     },
     "2_avg_prep_time": {
-      "average_prep_time_minutes": 65.78947368421052
+      "average_prep_time_minutes": 18.125
     },
     "3_difficulty_dist": {
-      "Easy": 9,
-      "Medium": 8,
-      "Hard": 2
+      "Easy": 8,
+      "Medium": 7,
+      "Hard": 1
     },
     "4_prep_likes_corr": {
-      "correlation_prep_time_likes": -0.3575399246164924
+      "correlation_prep_time_likes": 0.10375027518676228
     },
     "5_top_viewed": [
       {
-        "name": "Vegetable Biryani",
-        "view_count": 17
+        "name": "Aloo Paratha",
+        "view_count": 9
       },
       {
-        "name": "Poha",
-        "view_count": 17
+        "name": "Dal Tadka",
+        "view_count": 9
       },
       {
-        "name": "Aloo Gobi",
-        "view_count": 16
+        "name": "Pav Bhaji",
+        "view_count": 8
       },
       {
-        "name": "Egg Bhurji",
-        "view_count": 16
+        "name": "Chicken Biryani",
+        "view_count": 7
       },
       {
-        "name": "Idli Sambar",
-        "view_count": 16
+        "name": "Fish Fry",
+        "view_count": 7
       }
     ],
     "6_high_engagement_ing": {
-      "Onion": 2,
-      "Yogurt": 2,
-      "Chickpeas": 1,
-      "Chana Masala Powder": 1,
-      "Ginger Garlic Paste": 1
+      "Milk Powder": 1,
+      "Sugar": 1,
+      "Rice Flour": 1,
+      "Coconut": 1,
+      "Idli rice": 1
     },
     "7_funnel": {
-      "view_count": 239,
-      "like_count": 96,
-      "cook_attempt_count": 35
+      "view_count": 90,
+      "like_count": 100,
+      "cook_attempt_count": 92
     },
     "8_segments": {
-      "Low Engager": 7,
-      "Medium Engager": 7,
-      "High Engager": 16
+      "Low Engager": 9,
+      "Medium Engager": 8,
+      "High Engager": 13
     },
     "9_rating_by_diff": {
-      "Easy": 2.8666666666666667,
-      "Medium": 2.75,
-      "Hard": 3.6666666666666665
+      "Easy": 3.1875,
+      "Medium": 3.0,
+      "Hard": 3.0
     },
     "10_cook_time_stats": {
-      "count": 19.0,
-      "mean": 23.42105263157895,
-      "std": 10.67872125861979,
-      "min": 10.0,
-      "25%": 15.0,
-      "50%": 25.0,
-      "75%": 30.0,
+      "count": 16.0,
+      "mean": 18.125,
+      "std": 12.632629707758133,
+      "min": 0.0,
+      "25%": 10.0,
+      "50%": 17.5,
+      "75%": 21.25,
       "max": 45.0
     },
     "11_top_cities_cooking": {
+      "Ahmedabad": 13,
       "Jaipur": 10,
-      "Hyderabad": 9,
-      "Kolkata": 5,
-      "Warangal": 3,
-      "Udaipur": 2
+      "Warangal": 10,
+      "Nagpur": 8,
+      "Salem": 7
     },
     "12_weighted_popularity": [
       {
-        "name": "Poha",
-        "popularity_score": 87
+        "name": "Idli Sambar",
+        "popularity_score": 171
       },
       {
-        "name": "Chicken Tikka",
-        "popularity_score": 81
+        "name": "Mango Shake",
+        "popularity_score": 137
       },
       {
-        "name": "Vegetable Biryani",
-        "popularity_score": 79
+        "name": "Cutlet",
+        "popularity_score": 125
       },
       {
-        "name": "Aloo Gobi",
-        "popularity_score": 76
+        "name": "Fish Fry",
+        "popularity_score": 117
       },
       {
-        "name": "Chana Masala",
-        "popularity_score": 71
+        "name": "Gulab Jamun",
+        "popularity_score": 116
       }
     ],
     "13_avg_steps_by_difficulty": {
-      "Easy": 4.0,
-      "Medium": 4.0,
+      "Easy": 2.75,
+      "Medium": 6.285714285714286,
       "Hard": 4.0
     },
     "14_engagement_by_cuisine": {
-      "Global": 114,
-      "Indian": 37,
-      "South Indian": 10
+      "Global": 282,
+      "South Indian": 28
     },
     "15_user_state_distribution": {
-      "Telangana": 7,
-      "Rajasthan": 6,
+      "Telangana": 5,
       "Maharashtra": 5,
-      "West Bengal": 5,
-      "Tamil Nadu": 2
+      "Rajasthan": 4,
+      "Tamil Nadu": 4,
+      "West Bengal": 4
     }
   },
   "assignment_pdf_path": "D:/Assignment_DataEngineer/data_engineer_test.pdf"

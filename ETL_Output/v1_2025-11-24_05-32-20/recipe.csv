@@ -13,5 +13,6 @@ masala_dosa,Masala Dosa,Masala Dosa recipe,30,20,Medium,2,South Indian|Breakfast
 paneer_butter_masala,Paneer Butter Masala,Paneer Butter Masala recipe,20,25,Medium,2,Indian|Dinner,Global
 pav_bhaji,Pav Bhaji,Pav Bhaji recipe,20,25,Easy,2,Street Food,Global
 poha,Poha,Poha recipe,10,5,Easy,2,Breakfast,Global
+recipe_negative_prep,Impossible Dish,Invalid negative prep time,-10,20,Easy,2,,
 upma,Upma,Upma recipe,10,10,Easy,2,Breakfast,Global
 veg_fried_rice,Veg Fried Rice,Veg Fried Rice recipe,15,10,Easy,2,Chinese|Lunch,Global

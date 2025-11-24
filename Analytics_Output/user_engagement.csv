@@ -1,31 +1,31 @@
 user_id,name,city,state,country,email,total_interactions
-aishwarya_iyer,Aishwarya Iyer,Hyderabad,Telangana,India,user5@example.com,10
-amit_sharma,Amit Sharma,Jaipur,Rajasthan,India,user0@example.com,18
-anita_mehta,Anita Mehta,Jaipur,Rajasthan,India,user11@example.com,14
-anjali_khan,Anjali Khan,Nashik,Maharashtra,India,user13@example.com,12
-arjun_pandey,Arjun Pandey,Madurai,Tamil Nadu,India,user23@example.com,10
-deepak_mishra,Deepak Mishra,Ahmedabad,Gujarat,India,user12@example.com,12
-divya_mishra,Divya Mishra,Howrah,West Bengal,India,user26@example.com,10
-harsh_shetty,Harsh Shetty,Udaipur,Rajasthan,India,user18@example.com,14
-ishita_chauhan,Ishita Chauhan,Warangal,Telangana,India,user24@example.com,13
-karthik_khan,Karthik Khan,Thane,Maharashtra,India,user27@example.com,14
-kavya_rao,Kavya Rao,Kolkata,West Bengal,India,user21@example.com,15
-kiran_shetty,Kiran Shetty,Jaipur,Rajasthan,India,user4@example.com,16
-manish_mehta,Manish Mehta,Nashik,Maharashtra,India,user25@example.com,14
-megha_pandey,Megha Pandey,Kolkata,West Bengal,India,user9@example.com,8
-neha_kulkarni,Neha Kulkarni,Hyderabad,Telangana,India,user29@example.com,11
-nikhil_patil,Nikhil Patil,Hubli,Karnataka,India,user15@example.com,15
-pooja_joshi,Pooja Joshi,Jaipur,Rajasthan,India,user17@example.com,14
-priya_joshi,Priya Joshi,Ahmedabad,Gujarat,India,user3@example.com,12
-rahul_deshmukh,Rahul Deshmukh,Udaipur,Rajasthan,India,user6@example.com,14
-ravi_sharma,Ravi Sharma,Hyderabad,Telangana,India,user14@example.com,17
-ritika_gupta,Ritika Gupta,Hyderabad,Telangana,India,user8@example.com,16
-rohan_patil,Rohan Patil,New Delhi,Delhi,India,user1@example.com,12
-sakshi_gupta,Sakshi Gupta,Hyderabad,Telangana,India,user22@example.com,18
-sanjay_iyer,Sanjay Iyer,Nagpur,Maharashtra,India,user19@example.com,11
-shreya_naik,Shreya Naik,Kolkata,West Bengal,India,user28@example.com,15
-sneha_verma,Sneha Verma,Warangal,Telangana,India,user2@example.com,14
-suresh_chauhan,Suresh Chauhan,New Delhi,Delhi,India,user10@example.com,11
-tanvi_verma,Tanvi Verma,Thane,Maharashtra,India,user16@example.com,13
-varun_deshmukh,Varun Deshmukh,Kolkata,West Bengal,India,user20@example.com,14
-vikas_rao,Vikas Rao,Chennai,Tamil Nadu,India,user7@example.com,13
+aishwarya_iyer,Aishwarya Iyer,Madurai,Tamil Nadu,India,user5@example.com,7
+amit_sharma,Amit Sharma,Jaipur,Rajasthan,India,user0@example.com,16
+anita_mehta,Anita Mehta,Warangal,Telangana,India,user11@example.com,15
+anjali_khan,Anjali Khan,Mysuru,Karnataka,India,user13@example.com,18
+arjun_pandey,Arjun Pandey,Nagpur,Maharashtra,India,user23@example.com,15
+deepak_mishra,Deepak Mishra,Warangal,Telangana,India,user12@example.com,15
+divya_mishra,Divya Mishra,Kolkata,West Bengal,India,user26@example.com,19
+harsh_shetty,Harsh Shetty,Salem,Tamil Nadu,India,user18@example.com,15
+ishita_chauhan,Ishita Chauhan,Jaipur,Rajasthan,India,user24@example.com,18
+karthik_khan,Karthik Khan,New Delhi,Delhi,India,user27@example.com,12
+kavya_rao,Kavya Rao,Howrah,West Bengal,India,user21@example.com,12
+kiran_shetty,Kiran Shetty,Nagpur,Maharashtra,India,user4@example.com,9
+manish_mehta,Manish Mehta,Pune,Maharashtra,India,user25@example.com,9
+megha_pandey,Megha Pandey,Warangal,Telangana,India,user9@example.com,12
+neha_kulkarni,Neha Kulkarni,Jaipur,Rajasthan,India,user29@example.com,17
+nikhil_patil,Nikhil Patil,Howrah,West Bengal,India,user15@example.com,9
+pooja_joshi,Pooja Joshi,Pune,Maharashtra,India,user17@example.com,13
+priya_joshi,Priya Joshi,New Delhi,Delhi,India,user3@example.com,15
+rahul_deshmukh,Rahul Deshmukh,Bengaluru,Karnataka,India,user6@example.com,9
+ravi_sharma,Ravi Sharma,Ahmedabad,Gujarat,India,user14@example.com,9
+ritika_gupta,Ritika Gupta,Ahmedabad,Gujarat,India,user8@example.com,13
+rohan_patil,Rohan Patil,Mangaluru,Karnataka,India,user1@example.com,14
+sakshi_gupta,Sakshi Gupta,Madurai,Tamil Nadu,India,user22@example.com,11
+sanjay_iyer,Sanjay Iyer,Udaipur,Rajasthan,India,user19@example.com,15
+shreya_naik,Shreya Naik,Warangal,Telangana,India,user28@example.com,8
+sneha_verma,Sneha Verma,Howrah,West Bengal,India,user2@example.com,14
+suresh_chauhan,Suresh Chauhan,Hyderabad,Telangana,India,user10@example.com,11
+tanvi_verma,Tanvi Verma,Nagpur,Maharashtra,India,user16@example.com,14
+varun_deshmukh,Varun Deshmukh,Coimbatore,Tamil Nadu,India,user20@example.com,18
+vikas_rao,Vikas Rao,Ahmedabad,Gujarat,India,user7@example.com,18
