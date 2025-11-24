@@ -405,3 +405,13 @@ Each folder contains structured, validated, and analytics-ready data.
 - Validation applies a broad set of structural and rule-based checks, but deeper semantic validation (e.g., cross-table business rules statistical anomaly detection) is beyond current scope.
 - Analytics depend entirely on output from the synthetic dataset, and insights may vary between runs due to randomized user interactions.
 - The pipeline is executed locally and does not yet include managed deployment, workflow scheduling, monitoring, or CI/CD automation.
+
+##  References
+- [Firebase Firestore Documentation](https://firebase.google.com/docs/firestore)  
+- [Firestore Data Modeling](https://firebase.google.com/docs/firestore/data-model)  
+- [Pandas Documentation](https://pandas.pydata.org/docs/)  
+- [Matplotlib Documentation](https://matplotlib.org/)  
+- [Google Cloud: ETL Best Practices](https://cloud.google.com/architecture/best-practices-for-etl)  
+- [Great Expectations: Data Validation Concepts](https://greatexpectations.io/docs/)
+
+
