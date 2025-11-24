@@ -1,0 +1,31 @@
+user_id,name,city,state,country,email
+aishwarya_iyer,Aishwarya Iyer,Pune,Maharashtra,India,user5@example.com
+amit_sharma,Amit Sharma,Nashik,Maharashtra,India,user0@example.com
+anita_mehta,Anita Mehta,New Delhi,Delhi,India,user11@example.com
+anjali_khan,Anjali Khan,Hyderabad,Telangana,India,user13@example.com
+arjun_pandey,Arjun Pandey,Mysuru,Karnataka,India,user23@example.com
+deepak_mishra,Deepak Mishra,Pune,Maharashtra,India,user12@example.com
+divya_mishra,Divya Mishra,Warangal,Telangana,India,user26@example.com
+harsh_shetty,Harsh Shetty,Warangal,Telangana,India,user18@example.com
+ishita_chauhan,Ishita Chauhan,Vadodara,Gujarat,India,user24@example.com
+karthik_khan,Karthik Khan,Bengaluru,Karnataka,India,user27@example.com
+kavya_rao,Kavya Rao,Howrah,West Bengal,India,user21@example.com
+kiran_shetty,Kiran Shetty,Nagpur,Maharashtra,India,user4@example.com
+manish_mehta,Manish Mehta,Ahmedabad,Gujarat,India,user25@example.com
+megha_pandey,Megha Pandey,New Delhi,Delhi,India,user9@example.com
+neha_kulkarni,Neha Kulkarni,Kolkata,West Bengal,India,user29@example.com
+nikhil_patil,Nikhil Patil,Vadodara,Gujarat,India,user15@example.com
+pooja_joshi,Pooja Joshi,Vadodara,Gujarat,India,user17@example.com
+priya_joshi,Priya Joshi,Kolkata,West Bengal,India,user3@example.com
+rahul_deshmukh,Rahul Deshmukh,Chennai,Tamil Nadu,India,user6@example.com
+ravi_sharma,Ravi Sharma,Kolkata,West Bengal,India,user14@example.com
+ritika_gupta,Ritika Gupta,New Delhi,Delhi,India,user8@example.com
+rohan_patil,Rohan Patil,Coimbatore,Tamil Nadu,India,user1@example.com
+sakshi_gupta,Sakshi Gupta,Howrah,West Bengal,India,user22@example.com
+sanjay_iyer,Sanjay Iyer,Kolkata,West Bengal,India,user19@example.com
+shreya_naik,Shreya Naik,Chennai,Tamil Nadu,India,user28@example.com
+sneha_verma,Sneha Verma,Ahmedabad,Gujarat,India,user2@example.com
+suresh_chauhan,Suresh Chauhan,Hyderabad,Telangana,India,user10@example.com
+tanvi_verma,Tanvi Verma,Udaipur,Rajasthan,India,user16@example.com
+varun_deshmukh,Varun Deshmukh,Nagpur,Maharashtra,India,user20@example.com
+vikas_rao,Vikas Rao,New Delhi,Delhi,India,user7@example.com

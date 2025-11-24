@@ -1,0 +1,2 @@
+interaction_id,user_id,recipe_id,type,rating,like,timestamp
+invalid_rating_high,karthik_khan,mango_shake,rating,10.0,False,2025-11-24 06:27:19.727477+00:00

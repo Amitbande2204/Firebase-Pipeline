@@ -22,19 +22,6 @@ serviceAccountKey.json
 .DS_Store
 Thumbs.db
 
-# ----------------------------
-# Temporary / backup files
-# ----------------------------
-*.tmp
-*.log
 
-# ----------------------------
-# DATA PIPELINE OUTPUT (DO NOT TRACK)
-# ----------------------------
-ETL_Output/
-Validation_Output/
-Analytics_Output/
 
-# These files are auto-generated during pipeline runs
-etl_checkpoint.txt
-*/etl_checkpoint.txt
+

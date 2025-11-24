@@ -1,0 +1,17 @@
+recipe_id,name,description,prep_time_minutes,cook_time_minutes,difficulty,servings,tags,cuisines,popularity_score
+aloo_paratha,Aloo Paratha,Aloo Paratha recipe,25,15,Medium,2,Indian|Breakfast,Global,55
+chicken_biryani,Chicken Biryani,Chicken Biryani recipe,40,45,Hard,2,Indian,Global,150
+cutlet,Cutlet,Cutlet recipe,20,10,Medium,2,Snack,Global,126
+dal_tadka,Dal Tadka,Dal Tadka recipe,15,20,Easy,2,Indian,Global,99
+fish_fry,Fish Fry,Fish Fry recipe,15,10,Easy,2,Seafood,Global,111
+gulab_jamun,Gulab Jamun,Gulab Jamun recipe,10,20,Medium,2,Dessert,Global,126
+idiyappam,Idiyappam,Idiyappam recipe,20,10,Medium,2,Breakfast,Global,79
+idli_sambar,Idli Sambar,Traditional South Indian breakfast of steamed idlis served with aromatic sambar.,20,45,Medium,4,breakfast|vegetarian|steamed|traditional,South Indian,109
+khichdi,Khichdi,Khichdi recipe,15,20,Easy,2,Comfort Food,Global,135
+mango_shake,Mango Shake,Mango Shake recipe,5,0,Easy,2,Drink,Global,147
+masala_dosa,Masala Dosa,Masala Dosa recipe,30,20,Medium,2,South Indian|Breakfast,Global,128
+paneer_butter_masala,Paneer Butter Masala,Paneer Butter Masala recipe,20,25,Medium,2,Indian|Dinner,Global,129
+pav_bhaji,Pav Bhaji,Pav Bhaji recipe,20,25,Easy,2,Street Food,Global,123
+poha,Poha,Poha recipe,10,5,Easy,2,Breakfast,Global,118
+upma,Upma,Upma recipe,10,10,Easy,2,Breakfast,Global,163
+veg_fried_rice,Veg Fried Rice,Veg Fried Rice recipe,15,10,Easy,2,Chinese|Lunch,Global,153

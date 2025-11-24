@@ -29,9 +29,9 @@ logger = get_logger("FirestoreSetup")
 NUM_USERS = 30
 NUM_INTERACTIONS = 400
 
-# --------------------------------------------------------
+
 # User Locations
-# --------------------------------------------------------
+
 LOCATIONS = {
     "Maharashtra": ["Pune", "Mumbai", "Nagpur", "Nashik", "Thane"],
     "Karnataka": ["Bengaluru", "Mysuru", "Mangaluru", "Hubli"],

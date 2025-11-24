@@ -1,0 +1,3 @@
+ingredient_id,recipe_id,name,quantity,unit
+idli_4,idli_sambar,Water,0.0,as needed
+sambar_4,idli_sambar,Salt,0.0,as per taste
