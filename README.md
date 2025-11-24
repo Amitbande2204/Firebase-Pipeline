@@ -1,22 +1,30 @@
-# Firebase-Pipeline
+#  <h1 align="center">Firebase-Based Recipe Analytics Pipeline</h1>  
+<p align="center">
+  <b>🔥 Firestore</b> &nbsp; | &nbsp;
+  <b>🐍 Python</b> &nbsp; | &nbsp;
+  <b>🔄 ETL</b> &nbsp; | &nbsp;
+  <b>⚙️ Orchestration</b> &nbsp; | &nbsp;
+  <b>🧪 Validation</b> &nbsp; | &nbsp;
+  <b>📊 Analytics</b> 
+</p>
 
-##  Firebase-Based Recipe Analytics Pipeline:  
-A complete end-to-end **Data Engineering workflow** using **Firestore**, **Python**, **ETL**, **Analytics**, and **Visualization**.
 
 ## Overview:
-This project implements a complete end‑to‑end analytics pipeline using Firestore as the source system.  
-The pipeline seeds Firestore with my primary recipe (Idli Sambar) along with realistic synthetic data, performs ETL to CSV, validates the exported data, and generates analytics with visual insights.
+A fully automated, end-to-end data pipeline built on Firestore and Python, incorporating orchestration, ETL processing, data validation, and analytics generation. The system seeds Firestore with a primary recipe (Idli Sambar) and synthetic supporting datasets, extracts and normalizes them into structured CSV outputs, applies rule-based quality checks, and produces analytical insights with visual visualizations. The pipeline is orchestrated through a unified runner script and incorporates checkpointing mechanisms that prepare it for future incremental data handling.
 
 ## Project Structure:
-```
-firestore_setup.py       -> Seeds Firestore with recipes, users, interactions + bad data.  
-etl_export_transform.py  -> Extracts from Firestore, normalizes, exports CSVs.  
-validation.py            -> Validates exported CSVs, produces clean & quarantine outputs.  
-analytics.py             -> Generates insights, charts, analytics_report.json.  
-run_pipeline.py          -> Orchestrates all steps end‑to‑end.  
-utils.py                 -> Helpers, logging, folder configuration.  
-requirements.txt         -> Dependencies.  
-```
+| File Name                      | Description                                                                           |
+| --------------------------------| -------------------------------------------------------------------------------------  |
+| **📦 firestore_setup.py**      | Generates the controlled Firestore dataset (recipes, users, interactions, anomalies). |
+| **📦 etl_export_transform.py** | Handles extraction, normalization, and versioned ETL output generation.               |
+| **📦 validation.py**           | Applies rule-based data validation and segregates clean/quarantine datasets.          |
+| **📦 analytics.py**            | Computes insights, generates charts, and prepares analytical summaries.               |
+| **📦 run_pipeline.py**         | Coordinates the entire workflow: seeding, ETL, validation, and analytics.             |
+| **📦 utils.py**                | Provides logging, timestamps, directory/version management, and helper utilities.     |
+| **📦 requirements.txt**        | Defines all dependencies required for the complete pipeline.                          |
+
+
+
 
 ## Data Modeling: 
 A well-structured data model is the backbone of this pipeline.  
@@ -127,7 +135,7 @@ A visual ERD diagram:
   - Invalid interaction type  
 
 ## ETL/ELT Pipeline: 
-It is designed to be **deterministic**, **idempotent**, **scalable**, and **audit-friendly**, ensuring that the exported data is reliable for downstream validation and analytics.
+It is designed to be **deterministic**, **idempotent**, **scalable**, and **audit-friendly**, ensuring that the exported data is reliable for downstream validation and analytics.The ETL layer generates a timestamped version directory for every execution, preserving reproducible snapshots and preventing overwrites. A checkpoint file records the last successful run for clear traceability. Firestore data is streamed efficiently and fully normalized into structured relational tables, with all outputs organized inside the versioned directory for seamless validation and analytics.
 
 ### ETL Architecture Overview
 The ETL pipeline consists of **three phases**:
@@ -207,6 +215,48 @@ Supports segmentation and geo-based analytics.
 
 ### Loading (L):
 Once transformed, the data is persisted into the structured directory:
+
+### ETL Versioning & Output Management:
+To ensure reproducibility, clean history, and safe reruns of the pipeline, an improved output versioning system has been implemented.
+Every time the ETL pipeline runs:
+```
+ETL_Output/
+    v1_2025-11-24_05-32-20/
+        recipe.csv
+        ingredients.csv
+        steps.csv
+        users.csv
+        interactions.csv
+    etl_checkpoint.txt
+```
+#### 1. Version-Controlled Output:
+Each ETL run generates a dedicated timestamped version folder (e.g., v1_YYYY-MM-DD_HH-MM-SS).
+This isolates outputs per execution, preserves historical snapshots, prevents overwriting, and provides clear data lineage.
+
+#### 2. Checkpointing:
+A lightweight etl_checkpoint.txt file stores the timestamp of the last successful ETL cycle.
+This enables reliable run tracking and establishes the foundation for future incremental extraction patterns.
+
+#### 3. Structured Directory Discipline:
+The pipeline automatically provisions output folders, manages version directories, and ensures a clean execution layout.
+This prevents cross-run contamination and simplifies debugging and comparison between runs.
+
+#### 4. Strong Normalization Layer:
+Firestore’s nested structures are fully normalized into relational tables:
+```
+Recipes → flattened metadata
+Ingredients → unique IDs, quantity/unit separation
+Steps → ordered instructions with timing
+Users → structured demographic attributes
+Interactions → standardized event records
+This produces well-formed tabular datasets suitable for validation and analytics.
+```
+
+#### 5. Stream-Optimized Extraction:
+Firestore data is retrieved using stream-based reads, improving memory efficiency, performance, and scalability for large datasets.
+
+#### 6. Consistent Logging:
+All stages of ETL execution are logged with timestamps, collection counts, output paths, and transformation events, supporting traceability and operational transparency.
 
 ### Pipeline Workflow:
 
@@ -349,9 +399,9 @@ After the pipeline completes successfully, you will see:
 Each folder contains structured, validated, and analytics-ready data.
 
 ## Known Limitations:
-- The pipeline performs a full refresh on every run; incremental loads are not implemented.
-- Synthetic data and random interactions may not fully reflect real-world behavioral patterns.
-- Firestore batch writes are limited to fixed-size batches (e.g., 400 records).
-- Validation covers major logical rules but can be expanded with more advanced schema checks.
-- Analytics outputs depend strictly on generated data; insights may vary across runs.
-- The solution runs locally and does not include cloud deployment, scheduling, or CI/CD integration.
+- The ETL process produces versioned full snapshots for each run; incremental ingestion is planned but not yet implemented.
+- Synthetic recipes, users, and interaction events are procedurally generated and may not fully represent real production behavior.
+- Firestore writes and reads follow platform limits, including batch size constraints and rate limits for large datasets.
+- Validation applies a broad set of structural and rule-based checks, but deeper semantic validation (e.g., cross-table business rules statistical anomaly detection) is beyond current scope.
+- Analytics depend entirely on output from the synthetic dataset, and insights may vary between runs due to randomized user interactions.
+- The pipeline is executed locally and does not yet include managed deployment, workflow scheduling, monitoring, or CI/CD automation.
