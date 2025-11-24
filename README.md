@@ -406,7 +406,7 @@ Each folder contains structured, validated, and analytics-ready data.
 - Analytics depend entirely on output from the synthetic dataset, and insights may vary between runs due to randomized user interactions.
 - The pipeline is executed locally and does not yet include managed deployment, workflow scheduling, monitoring, or CI/CD automation.
 
-##  References
+##  References:
 - [Firebase Firestore Documentation](https://firebase.google.com/docs/firestore)  
 - [Firestore Data Modeling](https://firebase.google.com/docs/firestore/data-model)  
 - [Pandas Documentation](https://pandas.pydata.org/docs/)  
